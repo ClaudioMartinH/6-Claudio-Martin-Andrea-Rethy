@@ -11,7 +11,7 @@ router.get("/players/:id", async (req, res) => {
   const player = await prisma.player.findFirst({
     where: { id: parseInt(req.params.id) },
     include: {
-      games: true,
+      playerGames: true,
     },
   });
   if (!player) return res.status(404).json({ error: "Player not found" });

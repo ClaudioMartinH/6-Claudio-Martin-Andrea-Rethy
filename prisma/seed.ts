@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+// import { PrismaClient } from "@prisma/client";
+import { prisma } from "src/db.js";
 
 async function main() {
   await prisma.player.create({

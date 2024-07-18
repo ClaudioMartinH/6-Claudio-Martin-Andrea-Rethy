@@ -13,27 +13,35 @@ model Player {
   register_date DateTime      @default(now())
   password      String
   playerGames   PlayerGame[]
+  ranking       Ranking?
 }
 
 model Game {
   id            Int           @id @default(autoincrement())
   played_at     DateTime      @default(now())
   playerGames   PlayerGame[]
-}
+  }
 
 model PlayerGame {
   id            Int           @id @default(autoincrement())
-  playerId      Int
-  gameId        Int
+  playerId      Int           
+  gameId        Int           
   dice1_result  Int
   dice2_result  Int
-  overall_result String
+  overallResult String
   player        Player        @relation(fields: [playerId], references: [id])
   game          Game          @relation(fields: [gameId], references: [id])
-
-  @@unique([playerId, gameId])
 }
 
+model Ranking {
+  id            Int           @id @default(autoincrement())
+  playerId      Int           @unique
+  totalGames    Int           @default(0)
+  totalWins     Int           @default(0)
+  totalLost     Int           @default(0)
+  winPercentage Float         @default(0.0)
+  player        Player        @relation(fields: [playerId], references: [id])
+}
 // generator client {
 //   provider = "prisma-client-js"
 // }
