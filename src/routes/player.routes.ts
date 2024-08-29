@@ -7,16 +7,16 @@ router.get("/players", async (_req, res) => {
   const players = await prisma.player.findMany();
   res.json(players);
 });
-router.get("/players/:id", async (req, res) => {
-  const player = await prisma.player.findFirst({
-    where: { id: parseInt(req.params.id) },
-    include: {
-      playerGames: true,
-    },
-  });
-  if (!player) return res.status(404).json({ error: "Player not found" });
-  return res.json(player);
-});
+// router.get("/players/:id", async (req, res) => {
+//   const player = await prisma.player.findFirst({
+//     where: { id: parseInt(req.params.id) },
+//     include: {
+//       playerGames: true,
+//     },
+//   });
+//   if (!player) return res.status(404).json({ error: "Player not found" });
+//   return res.json(player);
+// });
 router.post("/players", async (req, res) => {
   const newPlayer = await prisma.player.create({
     data: req.body,
