@@ -45,13 +45,13 @@ router.put("/players/:id", async (req, res) => {
   }
 });
 
-router.delete("/players/:id", async (req, res) => {
-  const deletedPlayer = await prisma.player.delete({
-    where: { id: parseInt(req.params.id) },
-  });
-  if (!deletedPlayer)
-    return res.status(404).json({ error: "Player not found" });
-  return res.json(deletedPlayer);
-});
+// router.delete("/players/:id", async (req, res) => {
+//   const deletedPlayer = await prisma.player.delete({
+//     where: { id: parseInt(req.params.id) },
+//   });
+//   if (!deletedPlayer)
+//     return res.status(404).json({ error: "Player not found" });
+//   return res.json(deletedPlayer);
+// });
 
 export default router;
