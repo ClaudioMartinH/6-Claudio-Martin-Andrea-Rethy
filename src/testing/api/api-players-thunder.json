@@ -1,0 +1,69 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "jocdedaus",
+    "collectionId": "8530983d-4f0f-4671-bebd-749cc5fd1099",
+    "dateExported": "2024-08-31T23:16:23.001Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "cc18c94e-ba60-4e35-9753-ff282ba020ca",
+            "colId": "8530983d-4f0f-4671-bebd-749cc5fd1099",
+            "containerId": "",
+            "name": "getAllPlayers",
+            "url": "http://localhost:3000/api/players",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-08-31T23:03:04.977Z",
+            "modified": "2024-08-31T23:03:04.977Z",
+            "headers": []
+        },
+        {
+            "_id": "8f7b7da3-c5bf-4948-b9b0-3a6f87caa433",
+            "colId": "8530983d-4f0f-4671-bebd-749cc5fd1099",
+            "containerId": "",
+            "name": "createPlayer",
+            "url": "localhost:3000/api/players",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-08-31T23:06:07.049Z",
+            "modified": "2024-08-31T23:06:37.385Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Claudio\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1c1189cc-f8d8-4585-9412-ee9eb2607bbc",
+            "colId": "8530983d-4f0f-4671-bebd-749cc5fd1099",
+            "containerId": "",
+            "name": "updatePlayer",
+            "url": "localhost:3000/api/players/1",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-08-31T23:11:20.201Z",
+            "modified": "2024-08-31T23:11:20.201Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"ClaudioActualizado\",\n  \"password\": \"654321\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "4b4d6781-3359-4ea4-8c84-28e21022d76e",
+            "colId": "8530983d-4f0f-4671-bebd-749cc5fd1099",
+            "containerId": "",
+            "name": "getPlayerById",
+            "url": "localhost:3000/api/players/1",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-08-31T23:12:52.425Z",
+            "modified": "2024-08-31T23:12:52.425Z",
+            "headers": []
+        }
+    ],
+    "ref": "nwlnZYm5UtCNSxiRcsPmwi15knheRDlF4ljtJk-tChBzbDhDNwHp1QkyDM2P9XiFGSvAs7KqwobsNqhnyRlzmQ"
+}
