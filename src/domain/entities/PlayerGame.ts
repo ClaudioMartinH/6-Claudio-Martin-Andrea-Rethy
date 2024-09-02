@@ -2,22 +2,22 @@ import { Player } from "./Player.js";
 import { Game } from "./Game.js";
 
 export class PlayerGame {
-    id: number;
-    playerId: number;
-    gameId: number;
-    dice1Result: number;
-    dice2Result: number;
-    overallResult: string;
+    id: Number;
+    playerId: Number;
+    gameId: Number;
+    dice1Result: Number;
+    dice2Result: Number;
+    overallResult: String;
     player?: Player;
     game?: Game;
   
     constructor(
-      id: number,
-      playerId: number,
-      gameId: number,
-      dice1Result: number,
-      dice2Result: number,
-      overallResult: string,
+      id: Number,
+      playerId: Number,
+      gameId: Number,
+      dice1Result: Number,
+      dice2Result: Number,
+      overallResult: String,
       player?: Player,
       game?: Game
     ) {
