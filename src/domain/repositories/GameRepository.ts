@@ -1,6 +1,6 @@
-import { Game } from "../entities/Game.js";
+import { PlayerGame } from "../entities/PlayerGame.js";
 export interface GameRepository {
-    getGamesForPlayer(playerId: Number): Promise<Game[]>;
-    createGame(playerId: Number): Promise<Game>;
-    deleteGame(playerId: Number): Promise<void>;
+    getGamesForPlayer(playerId: Number): Promise<PlayerGame[]>;
+    createGame(game: PlayerGame): Promise<PlayerGame>;
+    deleteGames(playerId: Number): Promise<number>;
 }
