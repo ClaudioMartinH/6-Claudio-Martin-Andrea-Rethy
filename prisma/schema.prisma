@@ -19,18 +19,15 @@ model Player {
 model Game {
   id            Int           @id @default(autoincrement())
   played_at     DateTime      @default(now())
-  playerGames   PlayerGame[]
   }
 
 model PlayerGame {
   id            Int           @id @default(autoincrement())
-  playerId      Int           
-  gameId        Int           
-  dice1_result  Int
-  dice2_result  Int
+  playerId      Int                 
+  dice1Result  Int
+  dice2Result  Int
   overallResult String
   player        Player        @relation(fields: [playerId], references: [id])
-  game          Game          @relation(fields: [gameId], references: [id])
 }
 
 model Ranking {
