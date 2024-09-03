@@ -1,5 +1,5 @@
 import { GameRepositoryImpl } from "../repositories/gameRepositoryImpl.js";
-import { PlayerGame } from "@prisma/client";
+import { Game } from "@prisma/client";
 
 export class GameService {
     private gameRepository: GameRepositoryImpl;
@@ -7,12 +7,12 @@ export class GameService {
     this.gameRepository = new GameRepositoryImpl();
   }
 
-  async getGamesForPlayer(playerId: number): Promise<PlayerGame[]> {
+  async getGamesForPlayer(playerId: number): Promise<Game[]> {
     return await this.gameRepository.getGamesForPlayer(playerId);
     }
 
 
-    async createGame(data: Omit<PlayerGame, "id">): Promise<PlayerGame> {
+    async createGame(data: Omit<Game, "id">): Promise<Game> {
         return await this.gameRepository.createGame(data);
     }
 

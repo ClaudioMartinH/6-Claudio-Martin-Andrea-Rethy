@@ -12,11 +12,11 @@ model Player {
   name          String        @unique
   register_date DateTime      @default(now())
   password      String
-  playerGames   PlayerGame[]
+  games         Game[]
   ranking       Ranking?
 }
 
-model PlayerGame {
+model Game {
   id            Int           @id @default(autoincrement())
   playerId      Int                 
   dice1Result  Int

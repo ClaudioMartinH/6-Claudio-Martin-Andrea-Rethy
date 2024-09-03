@@ -1,7 +1,6 @@
 import { Player } from "./Player.js";
-import { Game } from "./Game.js";
 
-export class PlayerGame {
+export class Game {
     id: Number;
     playerId: Number;
     gameId: Number;
