@@ -1,16 +1,16 @@
-import { PrismaClient, PlayerGame } from "@prisma/client";
+import { PrismaClient, Game } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export class GameRepositoryImpl {
-    async getGamesForPlayer(playerId: number): Promise<PlayerGame[]> {
-        return await prisma.playerGame.findMany({
+    async getGamesForPlayer(playerId: number): Promise<Game[]> {
+        return await prisma.game.findMany({
             where: { playerId },
         });
     }
 
-    async createGame(data: Omit<PlayerGame, "id">): Promise<PlayerGame> {
-        return await prisma.playerGame.create({
+    async createGame(data: Omit<Game, "id">): Promise<Game> {
+        return await prisma.game.create({
             data: {
                 ...data,
               },
@@ -19,7 +19,7 @@ export class GameRepositoryImpl {
     
     async deleteGames(playerId: number): Promise<number> {
         try {
-            const result = await prisma.playerGame.deleteMany({
+            const result = await prisma.game.deleteMany({
                 where: { playerId },
             });
             return result.count;
