@@ -16,11 +16,6 @@ model Player {
   ranking       Ranking?
 }
 
-model Game {
-  id            Int           @id @default(autoincrement())
-  played_at     DateTime      @default(now())
-  }
-
 model PlayerGame {
   id            Int           @id @default(autoincrement())
   playerId      Int                 
