@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon ./dist/src/index.js",
-    "test": "vitest"
+    "test": "vitest",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "ClaudioMartinH",
