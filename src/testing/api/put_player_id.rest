@@ -1,0 +1,6 @@
+PUT http://localhost:3000/api/players/2
+Content-Type: application/json
+
+{
+  "name": "ClaudioEdited"
+}
