@@ -7,18 +7,22 @@ export class PlayerController {
   async getAllPlayers(_req: Request, res: Response) {
     try {
       const players = await playerService.getAllPlayers();
-      if (!players) {
+      if (players.length === 0) {
         return res.status(404).json({ message: "No players found" });
       }
       return res.status(200).json(players);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Server error" });
+    } catch (error: any) {
+      return res.status(400).json({ error: error.message });
     }
   }
   async getPlayerById(req: Request, res: Response) {
     const { id } = req.params;
-    const ID = parseInt(id);
+    const ID = parseInt(id, 10); // Asegúrate de usar base 10 para parseInt
+
+    if (isNaN(ID)) {
+      return res.status(400).json({ message: "Invalid player ID" });
+    }
+
     try {
       const player = await playerService.getPlayerById(ID);
       if (!player) {
@@ -26,44 +30,48 @@ export class PlayerController {
       }
       return res.status(200).json(player);
     } catch (error: any) {
-      return res.status(400).json({ error: error.message });
+      return res.status(500).json({ error: error.message });
     }
   }
   async createPlayer(req: Request, res: Response) {
-    const { name, password } = req.body;
-    if (!name || !password) {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+    if (typeof name !== "string") {
       return res
         .status(400)
-        .json({ message: "Missing required fields: name, password" });
+        .json({ message: "Invalid name. It should be a string" });
     }
     try {
       const newPlayer = await playerService.createPlayer({
         name,
-        password,
       });
       return res.status(201).json(newPlayer);
     } catch (error: any) {
-      return res.status(400).json({ error: error.message });
+      return res.status(500).json({ error: error.message });
     }
   }
   async updatePlayer(req: Request, res: Response) {
     const { id } = req.params;
     const ID = parseInt(id);
-    const { name, password } = req.body;
-    if (!name && !password) {
+    const { name } = req.body;
+    if (!name) {
       return res.status(400).json({ message: "No fields to update" });
     }
     try {
       const updatedPlayer = await playerService.updatePlayer(ID, {
         name,
-        password,
       });
       if (!updatedPlayer) {
         return res.status(404).json({ message: "Player not found" });
       }
       return res.status(200).json(updatedPlayer);
     } catch (error: any) {
-      return res.status(400).json({ error: error.message });
+      if (error.message === "Player not found") {
+        return res.status(404).json({ message: "Player not found" });
+      }
+      return res.status(500).json({ error: error.message });
     }
   }
 }

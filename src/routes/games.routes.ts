@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { GameController } from "src/infrastructure/controllers/gameController.js";
+import { GameController } from "../infrastructure/controllers/gameController.js";
 
 const router = Router();
 const gameController = new GameController();
@@ -7,7 +7,6 @@ const gameController = new GameController();
 router.get("/playerGames/:id", gameController.getGamesForPlayer);
 router.post("/playerGames/:id", gameController.createGame);
 router.delete("/playerGames/:id", gameController.deleteGames);
-
 
 // router.get("/games", async (_req, res) => {
 //   const games = await prisma.game.findMany();

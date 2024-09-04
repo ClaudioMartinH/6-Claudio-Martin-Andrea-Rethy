@@ -12,11 +12,15 @@ export class PlayerService {
   }
 
   async getPlayerById(id: number): Promise<Player | null> {
-    const player = await this.playerRepository.getPlayerById(id);
-    if (!player) {
-      throw new Error("Player not found");
+    try {
+      const player = await this.playerRepository.getPlayerById(id);
+      if (!player) {
+        return null;
+      }
+      return player;
+    } catch (error: any) {
+      throw new Error(`Error retrieving player: ${error.message}`);
     }
-    return player;
   }
 
   async createPlayer(
