@@ -25,11 +25,11 @@ const LoginPage: React.FC = () => {
           <h1 className='text-white text-5xl font-semibold my-4'>Login</h1>
           <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='Username' required />
-            <FaUser className='text-black absolute right-4 top-1/2 -translate-y-2/4'/>
+            <FaUser className='text-white absolute right-4 top-1/2 -translate-y-2/4'/>
           </div>
           <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='password' placeholder='Password' required />
-            <FaLock className='text-black absolute right-4 top-1/2 -translate-y-2/4'/>
+            <FaLock className='text-white absolute right-4 top-1/2 -translate-y-2/4'/>
           </div>
           <div className='flex justify-between'>
             <div className='flex items-center justify-evenly'>

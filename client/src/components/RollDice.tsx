@@ -38,8 +38,8 @@ const RollDice = () => {
         <>
             <div>
                 <div className="flex justify-center space-x-6 my-4">
-                    <Dice face={dice1} />
-                    <Dice face={dice2} />
+                    <Dice face={dice1} rolling={rolling} />
+                    <Dice face={dice2} rolling={rolling} />
                 </div>
                 <button onClick={roll} disabled={rolling} className="py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-lg font-semibold hover:opacity-85">
                     {rolling ? "Rolling..." : "Roll Dice"}
