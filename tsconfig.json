@@ -10,7 +10,6 @@
     "removeComments": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "noEmitHelpers": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

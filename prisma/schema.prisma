@@ -33,31 +33,3 @@ model Ranking {
   winPercentage Float  @default(0.0)
   player        Player @relation(fields: [playerId], references: [id])
 }
-
-// generator client {
-//   provider = "prisma-client-js"
-// }
-
-// datasource db {
-//   provider = "mysql"
-//   url      = env("DATABASE_URL")
-// }
-
-// model Player {
-//   id Int @id @default(autoincrement())
-//   name String @unique
-//   register_date DateTime @default(now())
-//   games Game[]
-//   password String
-
-// }
-
-// model Game {
-//   id            Int     @id @default(autoincrement())
-//   playerId      Int
-//   player        Player  @relation(fields: [playerId], references: [id])
-//   dice1_result  Int
-//   dice2_result  Int
-//   overall_result String
-//   played_at     DateTime @default(now())
-// }
