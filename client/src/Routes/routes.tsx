@@ -1,5 +1,5 @@
-import App from "@/App";
-import LoginPage from "@/components/loginpage";
+import App from '../App';
+import LoginPage from "../components/LoginPage";
 
 import { createBrowserRouter } from "react-router-dom";
 

@@ -1,73 +1,49 @@
 import dice from '../assets/dice.jpg'
-import React, { useState } from "react";
+import { FaUser,FaLock } from "react-icons/fa";
+
+// import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+//   const [username, setUsername] = useState("");
+//   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle login logic here
-    console.log("Username:", username);
-    console.log("Password:", password);
-  };
+//   const handleLogin = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     // Handle login logic here
+//     console.log("Username:", username);
+//     console.log("Password:", password);
+//   };
 
   return (
-    <div
-      className="flex pt-32 flex-col items-center justify-center px-6 py-8 mx-auto"
-      style={{
-        backgroundImage: `url(${dice})`,
-      }}
-    >
-      <div className="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-          <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-          <form onSubmit={handleLogin}>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="username"
-              >
-                Username
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="text"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
+    <section className='flex justify-center items-center min-h-full bg-slate-800' style={{ backgroundImage: `url(${dice})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+      
+      <div className='m-4 p-10 rounded-xl bg-white/30'>
+        <form action=''>
+          <h1 className='text-white text-5xl font-semibold my-4'>Login</h1>
+          <div className='relative'>
+            <input className='rounded-md p-3 my-3' type='text' placeholder='Username' required />
+            <FaUser className='text-black absolute right-4 top-1/2 -translate-y-2/4'/>
+          </div>
+          <div className='relative'>
+            <input className='rounded-md p-3 my-3' type='password' placeholder='Password' required />
+            <FaLock className='text-black absolute right-4 top-1/2 -translate-y-2/4'/>
+          </div>
+          <div className='flex justify-between'>
+            <div className='flex items-center justify-evenly'>
+              <input type='checkbox' placeholder='Password' required id='remember' className='accent-white mr-1 w-5 h-5'/>
+              <label htmlFor="remember" className='text-white'>Remember me</label>
             </div>
-            <div className="mb-6">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Sign In
-              </button>
-            </div>
-          </form>
-        </div>
+            <a href='#' className='text-white underline underline-offset-2 hover:text-slate-300'>Forgot password?</a>
+          </div>
+          <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85'>Login</button>
+          <div>
+            <p className='text-white'>Don't have an account? <a href="#" className='underline underline-offset-2 hover:text-slate-300'>Register</a></p>
+          </div>
+        </form>
       </div>
-    </div>
+    </section>
   );
 };
 
