@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
     // Handle login logic here
     // console.log("Username:", username);
     // console.log("Password:", password);
-    navigate("/play");
+    navigate("/home");
   };
 
   return (

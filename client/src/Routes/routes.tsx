@@ -1,7 +1,6 @@
 import MainPage from '../screens/MainPage';
 import App from '../App';
 import LoginPage from "../screens/LoginPage";
-
 import { createBrowserRouter } from "react-router-dom";
 import RegisterPage from '../screens/RegisterPage';
 
@@ -17,15 +16,16 @@ export const router = createBrowserRouter([
         errorElement: <div>THIS PAGE DOES NOT EXIST</div>,
       },
       {
-        path: "play",
-        element: <MainPage />,
-        errorElement: <div>THIS PAGE DOES NOT EXIST</div>,
-      },
-      {
         path: "register",
         element: <RegisterPage />,
         errorElement: <div>THIS PAGE DOES NOT EXIST</div>,
       },
+      {
+        path: "home",
+        element: <MainPage />,
+        errorElement: <div>THIS PAGE DOES NOT EXIST</div>,
+      },
+
     ],
   },
 ]);
