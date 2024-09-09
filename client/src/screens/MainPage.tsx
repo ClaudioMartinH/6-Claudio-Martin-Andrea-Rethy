@@ -1,7 +1,8 @@
 import Sidebar, { SidebarItem } from '../components/SideBar';
 import dice from '../assets/dice.jpg'
 import RollDice from '../components/RollDice';
-import { Players } from '../components/Players';
+import Players from '../components/Players';
+import Rankings from '../components/Rankings';
 import { FaDice, FaUsers } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
 import { useState } from 'react';
@@ -20,6 +21,7 @@ const MainPage: React.FC = () => {
         <div className='py-20 px-48 rounded-xl border border-slate-500 backdrop-blur-lg shadow-md shadow-slate-600'>
             {view === 0 && <RollDice />}
             {view === 1 && <Players />}
+            {view === 2 && <Rankings />}
         </div>
         <div></div>
     </section>
