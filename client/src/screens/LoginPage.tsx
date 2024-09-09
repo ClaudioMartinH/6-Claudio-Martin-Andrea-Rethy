@@ -1,6 +1,6 @@
 import dice from '../assets/dice.jpg'
 import { FaUser,FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import React, { useState } from "react";
 
 
@@ -39,9 +39,9 @@ const LoginPage: React.FC = () => {
             <a href='#' className='text-white underline underline-offset-2 hover:text-slate-300'>Forgot password?</a>
           </div>
           <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85' onClick={handleLogin}>Login</button>
-          <div>
-            <p className='text-white'>Don't have an account? <a href="#" className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</a></p>
-          </div>
+          <Link to={"/register"}>
+            <p className='text-white'>Don't have an account? <span className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</span></p>
+          </Link>
         </form>
       </div>
     </section>
