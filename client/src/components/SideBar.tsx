@@ -1,5 +1,6 @@
 import { LuMoreVertical, LuChevronRight, LuChevronLeft } from "react-icons/lu"
 import { useContext, createContext, useState, ReactNode } from "react"
+import { Link } from "react-router-dom"
 
 interface SidebarContextType {
   expanded: boolean
@@ -51,7 +52,10 @@ export default function Sidebar({ children }: SidebarProps) {
             <div className="leading-4">
               <h4 className="font-semibold text-gray-50">John Doe</h4>
             </div>
-            <LuMoreVertical size={20} className="text-gray-50" />
+            <Link to={"/profile"} className="text-gray-50 hover:bg-gray-800 p-2 rounded-full">
+              <LuMoreVertical size={20}  />
+            </Link>
+            
           </div>
         </div>
       </nav>

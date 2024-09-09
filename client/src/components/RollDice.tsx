@@ -57,9 +57,11 @@ const RollDice = () => {
                 </button>
                 <p className="text-white text-2xl">{result}</p>
                 <p className="text-white text-2xl">Total Score: {totalScore} / {rollCount}</p>
-                <button onClick={deleteGames} className="py-3 px-6 m-2 rounded-md bg-slate-800 text-white text-lg font-semibold hover:opacity-85">
-                    {rollCount > 0 ? "Delete History" : ""}
-                </button>
+                {rollCount > 0 && (
+                    <button onClick={deleteGames} className="py-3 px-6 m-2 rounded-md bg-slate-800 text-white text-lg font-semibold hover:opacity-85">
+                        Delete History
+                    </button>
+                )}
             </div>
         </>
     );
