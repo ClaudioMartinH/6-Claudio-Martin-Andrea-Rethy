@@ -2,6 +2,7 @@ import { useState } from "react";
 import Dice from "./Dice";
 
 const RollDice = () => {
+    // Manage API: POST /playerGames/:id
     const [state, setState] = useState({
         dice1: 1 as 1 | 2 | 3 | 4 | 5 | 6,
         dice2: 1 as 1 | 2 | 3 | 4 | 5 | 6,
@@ -34,6 +35,7 @@ const RollDice = () => {
         }, 1000);
     }
 
+    // Manage API: DELETE /playerGames/:id
     const deleteGames = () => {
         setState({
             dice1: 1,

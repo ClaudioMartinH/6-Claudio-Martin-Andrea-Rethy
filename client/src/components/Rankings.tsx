@@ -1,4 +1,4 @@
-// Manage API calls to get winner, looser and all rankings
+// Manage API: GET /ranking, GET /loser, GET /winner
 
 const Rankings = () => {
   return (

@@ -10,7 +10,7 @@ const LoginPage: React.FC = () => {
   // const [password, setPassword] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
-    
+    // Manage API: GET /players/:id
     e.preventDefault();
     // Handle login logic here
     // console.log("Username:", username);

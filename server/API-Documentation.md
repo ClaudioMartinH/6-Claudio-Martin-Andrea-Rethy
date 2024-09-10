@@ -9,8 +9,8 @@
 - Parámetros de Consulta:
 
   - Ninguno
-
 - Respuesta Exitosa:
+
   - Código: 200 OK
   - Cuerpo:
 
@@ -41,7 +41,6 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario a buscar.
-
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -54,7 +53,6 @@
       "register_date": "1725827223933"
     }
     ```
-
 - Errores posibles:
 
   - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
@@ -72,7 +70,6 @@
    "name": "User-1",
   }
   ```
-
 - Respuesta Exitosa:
 
   - Código: 201 Created
@@ -85,7 +82,6 @@
       "register_date": "1725827223933"
     }
     ```
-
 - Errores posibles:
 
   - 400 Bad Request – Datos de entrada no válidos
@@ -98,7 +94,6 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario a actualizar.
-
 - Parámetros del Cuerpo: Campos del usuario a actualizar, por ejemplo:
 
   ```MD
@@ -106,7 +101,6 @@
     "name": "User-1-Updated",
   }
   ```
-
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -119,7 +113,6 @@
       "register_date": "1725827223933"
     },
     ```
-
 - Errores posibles:
 
   - 404 Not Found – Usuario no encontrado.
@@ -133,6 +126,7 @@
 - Descripción: Obtiene las tiradas de un usuario específico por su ID.
 - Requiere Token: No
 - Parámetros de Ruta:
+
   - playerId (number): ID del usuario
 - Respuesta Exitosa:
 
@@ -153,8 +147,8 @@
       }
     }
     ```
-
 - Errores posibles:
+
   - 500 Internal Server Error – Error en el servidor al obtener las tiradas del usuario.
   - 404 Resource Not Found – Usuario no encontrado
   - 400 Bad Request – Datos de entrada no válidos
@@ -166,7 +160,6 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario
-
 - Parámetros del Cuerpo:
 
   ```MD
@@ -176,7 +169,6 @@
     "overallResult": "Win"
   }
   ```
-
 - Respuesta Exitosa:
 
   - Código: 201 Created
@@ -189,7 +181,6 @@
       "overallResult": "Win"
     }
     ```
-
 - Errores posibles:
 
   - 400 Bad Request – Datos de entrada no válidos
@@ -197,10 +188,10 @@
 
 ### DELETE /playerGames/:id
 
-- Descripción: Marca a un usuario como eliminado.
+- Descripción: Marca a los juegos de un usuario como eliminado.
 - Requiere Token: No
 - Parámetros de Ruta:
-  - playerId (string): ID del usuario a eliminar.
+  - playerId (string): ID del usuario
 - Respuesta Exitosa:
   - Código: 200 OK
   - Cuerpo:
@@ -224,8 +215,8 @@
 - Parámetros de Consulta:
 
   - Ninguno
-
 - Respuesta Exitosa:
+
   - Código: 200 OK
   - Cuerpo:
 
@@ -273,8 +264,8 @@
 - Parámetros de Consulta:
 
   - Ninguno
-
 - Respuesta Exitosa:
+
   - Código: 200 OK
   - Cuerpo:
 
@@ -299,8 +290,8 @@
 - Parámetros de Consulta:
 
   - Ninguno
-
 - Respuesta Exitosa:
+
   - Código: 200 OK
   - Cuerpo:
 

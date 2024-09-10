@@ -9,8 +9,8 @@ const RegisterPage: React.FC = () => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
-    
+  const handleRegister = (e: React.FormEvent) => {
+    // Manage API: POST /players
     e.preventDefault();
     // Handle login logic here
     // console.log("Username:", username);
@@ -31,7 +31,7 @@ const RegisterPage: React.FC = () => {
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='password' placeholder='Password' required />
             <FaLock className='text-white absolute right-8 top-1/2 -translate-y-2/4'/>
           </div>
-          <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85' onClick={handleLogin}>Submit</button>
+          <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85' onClick={handleRegister}>Submit</button>
         </form>
       </div>
     </section>
