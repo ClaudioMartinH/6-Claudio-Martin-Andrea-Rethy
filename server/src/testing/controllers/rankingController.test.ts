@@ -11,7 +11,7 @@ describe("RankingController", () => {
   // Inserta datos de prueba antes de cada test
   beforeEach(async () => {
     // Primero, crea jugadores (o cualquier entidad relacionada que necesite estar presente)
-    const createdPlayers = await prisma.player.createMany({
+    await prisma.player.createMany({
       data: [
         { id: 1, name: "Player 1" },
         { id: 2, name: "Player 2" },
@@ -24,7 +24,7 @@ describe("RankingController", () => {
     });
     testPlayerIds = players.map((player) => player.id);
 
-    const createdRankings = await prisma.ranking.createMany({
+    await prisma.ranking.createMany({
       data: [
         { playerId: testPlayerIds[0], winPercentage: 60 },
         { playerId: testPlayerIds[1], winPercentage: 40 },
