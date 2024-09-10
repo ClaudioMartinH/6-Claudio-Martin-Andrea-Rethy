@@ -1,0 +1,19 @@
+{
+  "name": "6-claudio-martin-andrea-rethy",
+  "version": "1.0.0",
+  "description": "��",
+  "main": "index.js",
+  "scripts": {
+    "install:frontend": "cd client && npm install",
+    "install:backend": "cd server && npm install",
+    "install": "npm run install:frontend && npm run install:backend",
+    "build:frontend": "cd client && npm run build",
+    "build:backend": "cd server && npm run build",
+    "start:frontend": "cd client && npm start",
+    "start:backend": "cd server && npm start",
+    "start:dev": "concurrently \"npm:start:frontend\" \"npm:start:backend\""
+  },
+  "keywords": [],
+  "author": "Andrea Rethy & Claudio Martin",
+  "license": "ISC"
+}
