@@ -24,10 +24,10 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: cd server && npm install
+        run: npm install
 
       - name: Build
-        run: cd server && npm run build
+        run: npm run build
 
       - name: Run tests
-        run: cd server && npm test
+        run: npm test
