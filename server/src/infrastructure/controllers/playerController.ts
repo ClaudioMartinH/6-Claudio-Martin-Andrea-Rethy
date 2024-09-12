@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PlayerService } from "../services/playerService.js";
+import jwt from "jsonwebtoken";
 
 const playerService = new PlayerService();
 
@@ -88,6 +89,32 @@ export class PlayerController {
         return res.status(404).json({ message: "Player not found" });
       }
       return res.status(500).json({ error: error.message });
+    }
+  }
+  async login(req: Request, res: Response) {
+    try {
+      const { playerName } = req.body;
+      if (!playerName) {
+        return res.status(400).json({ message: "Missing required field" });
+      }
+      const player = await playerService.getPlayerByName(playerName);
+      if (!player) {
+        return res.status(404).json({ message: "Player not found" });
+      }
+      const token = jwt.sign(
+        { playerName: playerName.name },
+        process.env.JWT_SECRET as string,
+        { expiresIn: "1h" }
+      );
+      return res.status(200).json({
+        token,
+        playerName: playerName,
+      });
+    } catch (error) {
+      console.error("Error logging in: ", error);
+      return res
+        .status(500)
+        .json({ message: "An error occurred during login" });
     }
   }
 }
