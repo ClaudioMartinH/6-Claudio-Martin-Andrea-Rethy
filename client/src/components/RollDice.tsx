@@ -18,8 +18,8 @@ const RollDice = () => {
         const newDice1 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
         const newDice2 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
         const score = newDice1 + newDice2;
-        const result = score > 7 ? "You Win!" : "You Loose!"
-        const newScore = score > 7 ? totalScore + 1 : totalScore
+        const result = score === 7 ? "You Win!" : "You Loose!"
+        const newScore = score === 7 ? totalScore + 1 : totalScore
         const newCount = rollCount + 1
         setState({
             dice1: newDice1,
@@ -32,7 +32,7 @@ const RollDice = () => {
 
         setTimeout(() => {
             setState((prevState) => ({...prevState, rolling: false}))
-        }, 1000);
+        }, 500);
     }
 
     // Manage API: DELETE /playerGames/:id

@@ -1,5 +1,5 @@
 import dice from '../assets/dice.jpg'
-import { FaUser,FaLock } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 // import React, { useState } from "react";
 
@@ -25,9 +25,9 @@ const LoginPage: React.FC = () => {
           <h1 className='text-white text-5xl font-semibold my-4'>Login</h1>
           <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='Username' required />
-            <FaUser className='text-white absolute right-4 top-1/2 -translate-y-2/4'/>
+            <FaUser className='text-white absolute right-14 top-1/2 -translate-y-2/4'/>
           </div>
-          <div className='relative'>
+          {/* <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='password' placeholder='Password' required />
             <FaLock className='text-white absolute right-4 top-1/2 -translate-y-2/4'/>
           </div>
@@ -37,11 +37,11 @@ const LoginPage: React.FC = () => {
               <label htmlFor="remember" className='text-white'>Remember me</label>
             </div>
             <a href='#' className='text-white underline underline-offset-2 hover:text-slate-300'>Forgot password?</a>
-          </div>
+          </div> */}
           <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85' onClick={handleLogin}>Login</button>
-          <Link to={"/register"}>
-            <p className='text-white'>Don't have an account? <span className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</span></p>
-          </Link>
+          
+            <p className='text-white'>Don't have an account? <Link to={"/register"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</Link> / <Link to={"/home"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Continue as guest</Link></p>
+          
         </form>
       </div>
     </section>

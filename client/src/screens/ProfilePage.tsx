@@ -1,5 +1,5 @@
 import dice from '../assets/dice.jpg';
-import { FaUser,FaLock } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
@@ -23,10 +23,10 @@ const ProfilePage = () => {
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='New Username' required />
             <FaUser className='text-white absolute right-16 top-1/2 -translate-y-2/4'/>
           </div>
-          <div className='relative'>
+          {/* <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='password' placeholder='Password' required />
             <FaLock className='text-white absolute right-16 top-1/2 -translate-y-2/4'/>
-          </div>
+          </div> */}
           <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85' onClick={handleUpdate}>Submit</button>
         </form>
       </div>
