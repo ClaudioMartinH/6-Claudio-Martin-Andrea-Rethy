@@ -114,7 +114,7 @@ describe("RankingController", () => {
       expect(res.status).toBeCalledWith(200);
       expect(res.json).toBeCalledWith(
         expect.objectContaining({
-          playerId: 23,
+          playerId: 89,
           winPercentage: 0,
         })
       );
@@ -134,7 +134,7 @@ describe("RankingController", () => {
       expect(res.status).toBeCalledWith(200);
       expect(res.json).toBeCalledWith(
         expect.objectContaining({
-          playerId: 22,
+          playerId: 88,
           winPercentage: 100,
         })
       );

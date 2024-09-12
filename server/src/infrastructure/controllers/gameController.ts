@@ -48,7 +48,7 @@ export class GameController {
       if (!games) {
         return res.status(404).json({ message: "Games for player not found" });
       }
-      return res.status(204).json(games);
+      return res.status(200).json({ message: "Games deleted successfully" });
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }

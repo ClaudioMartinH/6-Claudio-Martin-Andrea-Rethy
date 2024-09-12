@@ -49,15 +49,31 @@ describe("GameController", () => {
           name: "Player-2",
         },
       });
-      if (player)
-        await prisma.game.create({
-          data: {
+      if (!player) {
+        return;
+      }
+      await prisma.game.createMany({
+        data: [
+          {
             playerId: player?.id,
             dice1Result: 3,
             dice2Result: 4,
             overallResult: "win",
           },
-        });
+          {
+            playerId: player?.id,
+            dice1Result: 5,
+            dice2Result: 6,
+            overallResult: "lose",
+          },
+          {
+            playerId: player?.id,
+            dice1Result: 2,
+            dice2Result: 5,
+            overallResult: "win",
+          },
+        ],
+      });
 
       const req = {
         params: { id: player?.id.toString() },
