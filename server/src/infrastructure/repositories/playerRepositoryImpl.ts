@@ -13,6 +13,12 @@ export class PlayerRepositoryImpl {
     });
   }
 
+  async getPlayerByName(name: string): Promise<Player | null> {
+    return await prisma.player.findUnique({
+      where: { name },
+    });
+  }
+
   async createPlayer(
     data: Omit<Player, "id" | "register_date">
   ): Promise<Player> {

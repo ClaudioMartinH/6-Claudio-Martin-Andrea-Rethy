@@ -33,6 +33,22 @@ export class PlayerController {
       return res.status(500).json({ error: error.message });
     }
   }
+
+  async getPlayerByName(req: Request, res: Response) {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ message: "Missing required field" });
+    }
+    try {
+      const player = await playerService.getPlayerByName(name);
+      if (!player) {
+        return res.status(404).json({ message: "Player not found" });
+      }
+      return res.status(200).json(player);
+    } catch (error: any) {
+      return res.status(404).json({ message: error.message });
+    }
+  }
   async createPlayer(req: Request, res: Response) {
     const { name } = req.body;
     if (!name) {

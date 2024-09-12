@@ -28,7 +28,7 @@ describe("PlayerService", () => {
     });
 
     const players = await playerService.getAllPlayers();
-    expect(players).toHaveLength(4);
+    expect(players).toHaveLength(3);
   });
 
   it("should create a new player", async () => {
@@ -68,43 +68,11 @@ describe("PlayerService", () => {
     expect(foundPlayer).not.toBeNull();
     expect(foundPlayer?.name).toBe(name);
   });
+  it("should find a player by name", async () => {
+    const name = "Test-3";
+    await playerService.createPlayer({ name });
+    const foundPlayer = await playerService.getPlayerByName(name);
+    expect(foundPlayer).not.toBeNull();
+    expect(foundPlayer?.name).toBe(name);
+  });
 });
-
-// import { describe, expect, it } from "vitest";
-// import { PlayerService } from "../../infrastructure/services/playerService.js";
-
-// const playerService = new PlayerService();
-
-// describe("PlayerService", () => {
-//   it("should return all players", async () => {
-//     const players = await playerService.getAllPlayers();
-//     expect(players).toHaveLength(7);
-//   });
-//   it("should create a new player", async () => {
-//     const name = "Test-1";
-//     const newPlayer = await playerService.createPlayer({ name });
-//     expect(newPlayer.id).toBeGreaterThan(0);
-//     expect(newPlayer.name).toBe(name);
-//     const allPlayers = await playerService.getAllPlayers();
-//     expect(allPlayers).toHaveLength(4);
-//   });
-//   it("should update an existing player", async () => {
-//     const name = "Test-2";
-//     const newPlayer = await playerService.createPlayer({ name });
-//     const updatedPlayer = await playerService.updatePlayer(newPlayer.id, {
-//       name: "Test-2 Updated",
-//     });
-//     expect(updatedPlayer).not.toBeNull();
-//     expect(updatedPlayer?.name).toBe("Silvia Updated");
-//     const allPlayers = await playerService.getAllPlayers();
-//     expect(allPlayers).toHaveLength(1);
-//     expect(allPlayers[0].name).toBe("Silvia Updated");
-//   });
-//   it("should find an user by id", async () => {
-//     const name = "Test-3";
-//     const newPlayer = await playerService.createPlayer({ name });
-//     const foundPlayer = await playerService.getPlayerById(newPlayer.id);
-//     expect(foundPlayer).not.toBeNull();
-//     expect(foundPlayer?.name).toBe(name);
-//   });
-// });

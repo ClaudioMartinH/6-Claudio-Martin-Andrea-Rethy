@@ -23,6 +23,18 @@ export class PlayerService {
     }
   }
 
+  async getPlayerByName(name: string): Promise<Player | null> {
+    try {
+      const player = await this.playerRepository.getPlayerByName(name);
+      if (!player) {
+        return null;
+      }
+      return player;
+    } catch (error: any) {
+      throw new Error(`Error retrieving player: ${error.message}`);
+    }
+  }
+
   async createPlayer(
     data: Omit<Player, "id" | "register_date">
   ): Promise<Player> {
