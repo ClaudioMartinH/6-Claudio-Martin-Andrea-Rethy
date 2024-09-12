@@ -1,30 +1,29 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-// import React, { useState } from "react";
+import React, { useState } from "react";
 
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
-    // Manage API: GET /players/:id
     e.preventDefault();
-    // Handle login logic here
-    // console.log("Username:", username);
-    // console.log("Password:", password);
-    navigate("/home");
+    if (username.trim()) {
+      navigate("/home");
+    } else {
+      alert("Username cannot be empty");
+    }
   };
 
   return (
     <section className='flex justify-center items-center min-h-full bg-black' style={{ backgroundImage: `url(${dice})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className='m-4 p-10 rounded-xl border border-white backdrop-blur-lg shadow-md shadow-slate-500'>
-        <form action=''>
+        <form onSubmit={handleLogin}>
           <h1 className='text-white text-5xl font-semibold my-4'>Login</h1>
           <div className='relative'>
-            <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='Username' required />
+            <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='Username' value={username} id='username'onChange={(e) => setUsername(e.target.value)} />
             <FaUser className='text-white absolute right-14 top-1/2 -translate-y-2/4'/>
           </div>
           {/* <div className='relative'>
@@ -38,9 +37,9 @@ const LoginPage: React.FC = () => {
             </div>
             <a href='#' className='text-white underline underline-offset-2 hover:text-slate-300'>Forgot password?</a>
           </div> */}
-          <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85' onClick={handleLogin}>Login</button>
+          <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85'>Login</button>
           
-            <p className='text-white'>Don't have an account? <Link to={"/register"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</Link> / <Link to={"/home"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Continue as guest</Link></p>
+          <p className='text-white'>Don't have an account? <Link to={"/register"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</Link> / <Link to={"/home"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Continue as guest</Link></p>
           
         </form>
       </div>

@@ -1,6 +1,7 @@
-import { LuMoreVertical, LuChevronRight, LuChevronLeft } from "react-icons/lu"
-import { useContext, createContext, useState, ReactNode } from "react"
-import { Link } from "react-router-dom"
+import { LuMoreVertical, LuChevronRight, LuChevronLeft } from "react-icons/lu";
+import { FaUser } from "react-icons/fa";
+import { useContext, createContext, useState, ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface SidebarContextType {
   expanded: boolean
@@ -38,10 +39,8 @@ export default function Sidebar({ children }: SidebarProps) {
         </SidebarContext.Provider>
 
         <div className="border-t border-slate-500 flex p-3">
-          <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-            alt=""
-            className="w-10 h-10 rounded-md"
+          <FaUser
+            className="w-10 h-10 p-1 rounded-md bg-gray-400"
           />
           <div
             className={`
