@@ -17,17 +17,21 @@
 ```MD
 [
   {
-    "id": "1",
-    "name": "User-1",
-    "register_date": "1725827223933"
+    "id": 88,
+    "name": "Andrea",
+    "register_date": "2024-09-09T16:15:40.905Z"
   },
   {
-    "id": "2",
-    "name": "User-2",
-    "register_date": "1725827223934"
+    "id": 89,
+    "name": "Claudio",
+    "register_date": "2024-09-09T16:15:40.966Z"
+  },
+  {
+    "id": 90,
+    "name": "johndoe",
+    "register_date": "2024-09-12T14:47:45.719Z"
   }
 ]
-
 ```
 
 - Errores posibles:
@@ -48,10 +52,10 @@
 
     ```MD
     {
-      "id": "1",
-      "name": "User-1
-      "register_date": "1725827223933"
-    }
+        "id": 90,
+        "name": "johndoe",
+        "register_date": "2024-09-12T14:47:45.719Z"
+      }
     ```
 - Errores posibles:
 
@@ -77,9 +81,9 @@
 
     ```MD
     {
-      "id": "1",
-      "name": "User-1
-      "register_date": "1725827223933"
+      "id": 91,
+      "name": "johndoe-2",
+      "register_date": "2024-09-12T15:18:17.490Z"
     }
     ```
 - Errores posibles:
@@ -108,10 +112,10 @@
 
     ```MD
     {
-      "id": "1",
+      "id": 89,
       "name": "User-1-Updated",
-      "register_date": "1725827223933"
-    },
+      "register_date": "2024-09-09T16:15:40.966Z"
+    }
     ```
 - Errores posibles:
 
@@ -134,18 +138,22 @@
   - Cuerpo:
 
     ```MD
-    {
+    [
       {
-        "dice1Result": 3,
-        "dice2Result": 2,
-        "overallResult": "Loss"
+        "id": 27,
+        "playerId": 1,
+        "dice1Result": 5,
+        "dice2Result": 1,
+        "overallResult": "Loose"
       },
       {
+        "id": 28,
+        "playerId": 1,
         "dice1Result": 4,
         "dice2Result": 3,
         "overallResult": "Win"
       }
-    }
+    ]
     ```
 - Errores posibles:
 
@@ -163,10 +171,11 @@
 - Parámetros del Cuerpo:
 
   ```MD
-  {
-    "dice1Result": 4,
-    "dice2Result": 3,
-    "overallResult": "Win"
+  { 
+      "playerId" : 1,
+      "dice1Result": 4, 
+      "dice2Result": 3, 
+      "overallResult": "Win"
   }
   ```
 - Respuesta Exitosa:
@@ -176,6 +185,8 @@
 
     ```MD
     {
+      "id": 28,
+      "playerId": 1,
       "dice1Result": 4,
       "dice2Result": 3,
       "overallResult": "Win"
@@ -223,32 +234,20 @@
 ```MD
 [
   {
-    "playerId": 1,
-    "totalGames": 10,
-    "totalWins": 2,
-    "totalLost": 8,
-    "winPercentage": 20.0
+    "id": 75,
+    "playerId": 89,
+    "totalGames": 1,
+    "totalWins": 0,
+    "totalLost": 1,
+    "winPercentage": 0
   },
   {
-    "playerId": 2,
-    "totalGames": 10,
-    "totalWins": 8,
-    "totalLost": 2,
-    "winPercentage": 80.0
-  },
-  {
-    "playerId": 3,
-    "totalGames": 10,
-    "totalWins": 5,
-    "totalLost": 5,
-    "winPercentage": 50.0
-  },
-  {
-    "playerId": 4,
-    "totalGames": 10,
-    "totalWins": 4,
-    "totalLost": 6,
-    "winPercentage": 40.0
+    "id": 74,
+    "playerId": 88,
+    "totalGames": 1,
+    "totalWins": 1,
+    "totalLost": 0,
+    "winPercentage": 100
   }
 ]
 ```
@@ -271,11 +270,12 @@
 
 ```MD
 {
-  "playerId": 1,
-  "totalGames": 10,
-  "totalWins": 2,
-  "totalLost": 8,
-  "winPercentage": 20.0
+  "id": 75,
+  "playerId": 89,
+  "totalGames": 1,
+  "totalWins": 0,
+  "totalLost": 1,
+  "winPercentage": 0
 }
 ```
 
@@ -297,11 +297,12 @@
 
 ```MD
 {
-  "playerId": 2,
-  "totalGames": 10,
-  "totalWins": 8,
-  "totalLost": 2,
-  "winPercentage": 80.0
+  "id": 74,
+  "playerId": 88,
+  "totalGames": 1,
+  "totalWins": 1,
+  "totalLost": 0,
+  "winPercentage": 100
 }
 ```
 

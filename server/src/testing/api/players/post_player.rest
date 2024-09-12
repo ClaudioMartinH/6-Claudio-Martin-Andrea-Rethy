@@ -2,5 +2,5 @@ POST http://localhost:3000/api/players
 Content-Type: application/json
 
 {
-  "name": "johndoe"
+  "name": "test-user"
 }
