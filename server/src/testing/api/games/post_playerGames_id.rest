@@ -1,0 +1,9 @@
+POST  http://localhost:3000/api/playerGames/1
+Content-Type: application/json
+
+{ 
+    "playerId" : 90,
+    "dice1Result": 4, 
+    "dice2Result": 3, 
+    "overallResult": "Win"
+}

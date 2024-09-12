@@ -1,0 +1,6 @@
+PUT http://localhost:3000/api/players/89
+Content-Type: application/json
+
+{
+  "name": "User-1-Updated"
+}

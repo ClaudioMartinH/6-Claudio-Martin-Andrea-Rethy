@@ -1,0 +1,2 @@
+DELETE  http://localhost:3000/api/playerGames/90
+Content-Type: application/json
