@@ -1,18 +1,47 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+const URL = "/api/players"
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
+  // const [token, setToken] = useState(0);
+
+  // useEffect(() => {
+  //   console.log('Token updated:', token);
+  // }, [token]);
+
+  function createUser() {
+    fetch(`${URL}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // credentials: 'include',
+      body: JSON.stringify({ name: username }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        //  setToken(data.token)
+         if (data.id !== 0) {
+          navigate("/home");
+        } else {
+          alert("Invalid user! Try again")
+        }
+      } 
+    )
+      .catch((error) => console.error('Error:', error));
+  }
   
   const handleRegister = (e: React.FormEvent) => {
     // Manage API: POST /players
     e.preventDefault();
     if (username.trim()) {
-      navigate("/home");
+      createUser();
     } else {
       alert("Username cannot be empty");
     }

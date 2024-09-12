@@ -5,9 +5,19 @@ import rankingsRoutes from "./routes/rankings.routes.js";
 import loginRoutes from "./routes/login.routes.js";
 // import authMiddlewareJWT from "./middleware/authMiddleware.js";
 import dotenv from "dotenv";
+const cors = require('cors');
 
 dotenv.config();
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  // credentials: true
+}));
+
+app.options('*', cors());
+
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
