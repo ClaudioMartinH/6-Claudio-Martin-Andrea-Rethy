@@ -1,4 +1,4 @@
-npx prisma migrate dev --name create-player-game-tables
+npx prisma migrate dev --name create-player-game-ranking-tables
 npx prisma generate
 
 
