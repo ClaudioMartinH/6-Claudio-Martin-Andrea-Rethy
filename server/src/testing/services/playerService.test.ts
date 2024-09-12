@@ -28,7 +28,7 @@ describe("PlayerService", () => {
     });
 
     const players = await playerService.getAllPlayers();
-    expect(players).toHaveLength(3);
+    expect(players).toHaveLength(6);
   });
 
   it("should create a new player", async () => {
