@@ -1,7 +1,7 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, /*useEffect*/ } from "react";
 
 const URL = "/api/players"
 
@@ -28,6 +28,7 @@ const RegisterPage: React.FC = () => {
         console.log(data)
         //  setToken(data.token)
          if (data.id !== 0) {
+          localStorage.setItem("playerId", data.id.toString());
           navigate("/home");
         } else {
           alert("Invalid user! Try again")
