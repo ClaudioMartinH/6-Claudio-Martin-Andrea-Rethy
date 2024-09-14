@@ -4,7 +4,7 @@ import { PlayerController } from "../infrastructure/controllers/playerController
 const router = Router();
 const playerController = new PlayerController();
 
-router.post("/autentication", (req: Request, res: Response) =>
+router.post("/authentication", (req: Request, res: Response) =>
   playerController.login(req, res)
 );
 

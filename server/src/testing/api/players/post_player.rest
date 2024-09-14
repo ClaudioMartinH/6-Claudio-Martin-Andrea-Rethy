@@ -2,5 +2,6 @@ POST http://localhost:3000/api/players
 Content-Type: application/json
 
 {
-  "name": "test-user"
+  "name": "test-user1"
 }
+/* si falla la llamada es porque el nombre ya esta en uso, hay que cambiarlo antes de enviar la llamada */
