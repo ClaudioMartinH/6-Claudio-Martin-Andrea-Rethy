@@ -18,7 +18,7 @@ export class PlayerController {
   }
   async getPlayerById(req: Request, res: Response) {
     const { id } = req.params;
-    const ID = parseInt(id, 10); // Asegúrate de usar base 10 para parseInt
+    const ID = parseInt(id, 10);
 
     if (isNaN(ID)) {
       return res.status(400).json({ message: "Invalid player ID" });
@@ -101,6 +101,7 @@ export class PlayerController {
       if (!player) {
         return res.status(404).json({ message: "Player not found" });
       }
+      // en este caso, firmamos el token con playerName como dijimos, que, al ser unique, no deberia darnos problemas
       const token = jwt.sign(
         { playerName: playerName.name },
         process.env.JWT_SECRET as string,
