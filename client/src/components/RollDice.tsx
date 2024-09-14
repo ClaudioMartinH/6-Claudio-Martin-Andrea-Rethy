@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Dice from "./Dice";
 
+const URL = "/api/playerGames/";
+const playerId = Number(localStorage.getItem("playerId"));
+
 const RollDice = () => {
-    // Manage API: POST /playerGames/:id
     const [state, setState] = useState({
         dice1: 1 as 1 | 2 | 3 | 4 | 5 | 6,
         dice2: 1 as 1 | 2 | 3 | 4 | 5 | 6,
@@ -18,7 +20,7 @@ const RollDice = () => {
         const newDice1 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
         const newDice2 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
         const score = newDice1 + newDice2;
-        const result = score === 7 ? "You Win!" : "You Loose!"
+        const result = score === 7 ? "Win" : "Loose"
         const newScore = score === 7 ? totalScore + 1 : totalScore
         const newCount = rollCount + 1
         setState({
@@ -33,7 +35,39 @@ const RollDice = () => {
         setTimeout(() => {
             setState((prevState) => ({...prevState, rolling: false}))
         }, 500);
+
+        postGame(dice1, dice2, result);
     }
+
+    function postGame(dice1R: number, dice2R: number, oResult: string) {
+        fetch(`${URL}${playerId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // credentials: 'include',
+          body: JSON.stringify(
+            { 
+                "playerId" : playerId,
+                "dice1Result": dice1R, 
+                "dice2Result": dice2R, 
+                "overallResult": oResult
+            }
+          ),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            //  setToken(data.token)
+            //  if (data.id !== 0) {
+              
+            // } else {
+            //   alert("")
+            // }
+          } 
+        )
+          .catch((error) => console.error('Error:', error));
+      }
 
     // Manage API: DELETE /playerGames/:id
     const deleteGames = () => {
