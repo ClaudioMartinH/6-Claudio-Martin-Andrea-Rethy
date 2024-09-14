@@ -79,7 +79,31 @@ const RollDice = () => {
             totalScore: 0,
             rollCount: 0
         });
+
+        deleteGamesId();
     }
+
+    function deleteGamesId() {
+        fetch(`${URL}${playerId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // credentials: 'include',
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            //  setToken(data.token)
+            //  if (data.id !== 0) {
+              
+            // } else {
+            //   alert("")
+            // }
+          } 
+        )
+          .catch((error) => console.error('Error:', error));
+      }
 
     return (
         <>
