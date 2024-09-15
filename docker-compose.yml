@@ -2,7 +2,7 @@ services:
   frontend:
     build:
       context: ./client
-    image: node:20-alpine
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
     volumes:
@@ -13,8 +13,9 @@ services:
   backend:
     build:
       context: ./server
+      dockerfile: Dockerfile
     ports:
-      - "5050:5050"
+      - "3000:3000"
     volumes:
       - ./server:/usr/src/app
       - ./data:/usr/src/app/data
