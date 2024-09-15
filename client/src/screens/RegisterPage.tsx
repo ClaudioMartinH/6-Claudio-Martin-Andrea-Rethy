@@ -1,7 +1,7 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, /*useEffect*/ } from "react";
 
 const URL = "/api/players"
 
@@ -27,16 +27,16 @@ const RegisterPage: React.FC = () => {
       .then((data) => {
         console.log(data)
         //  setToken(data.token)
-         if (data.id !== 0) {
+        if (data.id !== 0) {
           navigate("/home");
         } else {
           alert("Invalid user! Try again")
         }
-      } 
-    )
+      }
+      )
       .catch((error) => console.error('Error:', error));
   }
-  
+
   const handleRegister = (e: React.FormEvent) => {
     // Manage API: POST /players
     e.preventDefault();
@@ -54,7 +54,7 @@ const RegisterPage: React.FC = () => {
           <h1 className='text-white text-5xl font-semibold my-4'>Create Account</h1>
           <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='Username' value={username} id='username' onChange={(e) => setUsername(e.target.value)} />
-            <FaUser className='text-white absolute right-8 top-1/2 -translate-y-2/4'/>
+            <FaUser className='text-white absolute right-8 top-1/2 -translate-y-2/4' />
           </div>
           {/* <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='password' placeholder='Password' required />
