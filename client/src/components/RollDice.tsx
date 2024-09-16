@@ -69,7 +69,6 @@ const RollDice = () => {
           .catch((error) => console.error('Error:', error));
       }
 
-    // Manage API: DELETE /playerGames/:id
     const deleteGames = () => {
         setState({
             dice1: 1,
@@ -79,7 +78,6 @@ const RollDice = () => {
             totalScore: 0,
             rollCount: 0
         });
-
         deleteGamesId();
     }
 
