@@ -5,7 +5,7 @@ import rankingsRoutes from "./routes/rankings.routes.js";
 import loginRoutes from "./routes/login.routes.js";
 import authMiddlewareJWT from "./middleware/authMiddleware.js";
 import dotenv from "dotenv";
-const cors = require("cors");
+import cors from "cors";
 
 dotenv.config();
 const app = express();

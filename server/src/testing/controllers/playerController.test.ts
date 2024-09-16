@@ -215,4 +215,51 @@ describe("PlayerController", () => {
       expect(res.json).toBeCalledWith({ message: "Player not found" });
     });
   });
+  describe("get player by name", async () => {
+    it("should return 200 if a player is found", async () => {
+      const player = await prisma.player.create({
+        data: {
+          name: "Silvia",
+          register_date: new Date(),
+        },
+      });
+      const req = { params: { name: player.name } } as unknown as Request;
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
+      } as unknown as Response;
+      await playerController.getPlayerByName(req, res);
+      expect(res.status).toBeCalledWith(200);
+      expect(res.json).toBeCalledWith(
+        expect.objectContaining({
+          name: "Silvia",
+          register_date: expect.any(Date),
+        })
+      );
+    });
+
+    it("should return 404 if player is not found", async () => {
+      const req = { params: { name: "Test-Player" } } as unknown as Request;
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
+      } as unknown as Response;
+      await playerController.getPlayerByName(req, res);
+      expect(res.status).toBeCalledWith(404);
+      expect(res.json).toBeCalledWith({ message: "Player not found" });
+    });
+
+    it("should return 400 if the name is missing", async () => {
+      const req = { params: { name: "" } } as unknown as Request;
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
+      } as unknown as Response;
+      await playerController.getPlayerByName(req, res);
+      expect(res.status).toBeCalledWith(400);
+      expect(res.json).toBeCalledWith({
+        message: "Missing required field",
+      });
+    });
+  });
 });

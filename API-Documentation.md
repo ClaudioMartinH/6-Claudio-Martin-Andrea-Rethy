@@ -9,6 +9,7 @@
 - Parámetros de Consulta:
 
   - Ninguno
+
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -45,6 +46,7 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario a buscar.
+
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -57,6 +59,38 @@
         "register_date": "2024-09-12T14:47:45.719Z"
       }
     ```
+
+- Errores posibles:
+
+  - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
+  - 404 Resource Not Found – Usuario no encontrado
+  - 400 Bad Request – Datos de entrada no válidos
+
+### GET /players/name/:name
+
+- Descripción: Obtiene un usuario específico por su ID.
+- Requiere Token: Si
+- Parámetros de Ruta:
+
+  - name (string): nombre del usuario a buscar.
+
+- Respuesta Exitosa:
+
+  - Código: 200 OK
+  - Cuerpo:
+
+      ```MD
+        
+    {
+
+    "id": 92,
+    "name": "test-user",
+    "register_date": "2024-09-12T17:33:08.326Z"
+        
+    }
+
+        ```
+
 - Errores posibles:
 
   - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
@@ -74,6 +108,7 @@
    "name": "User-1",
   }
   ```
+
 - Respuesta Exitosa:
 
   - Código: 201 Created
@@ -86,6 +121,7 @@
       "register_date": "2024-09-12T15:18:17.490Z"
     }
     ```
+
 - Errores posibles:
 
   - 400 Bad Request – Datos de entrada no válidos
@@ -98,6 +134,7 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario a actualizar.
+
 - Parámetros del Cuerpo: Campos del usuario a actualizar, por ejemplo:
 
   ```MD
@@ -105,6 +142,7 @@
     "name": "User-1-Updated",
   }
   ```
+
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -117,6 +155,7 @@
       "register_date": "2024-09-09T16:15:40.966Z"
     }
     ```
+
 - Errores posibles:
 
   - 404 Not Found – Usuario no encontrado.
@@ -132,6 +171,7 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario
+
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -155,6 +195,7 @@
       }
     ]
     ```
+
 - Errores posibles:
 
   - 500 Internal Server Error – Error en el servidor al obtener las tiradas del usuario.
@@ -168,16 +209,18 @@
 - Parámetros de Ruta:
 
   - playerId (number): ID del usuario
+
 - Parámetros del Cuerpo:
 
   ```MD
-  { 
+  {
       "playerId" : 1,
-      "dice1Result": 4, 
-      "dice2Result": 3, 
+      "dice1Result": 4,
+      "dice2Result": 3,
       "overallResult": "Win"
   }
   ```
+
 - Respuesta Exitosa:
 
   - Código: 201 Created
@@ -192,6 +235,7 @@
       "overallResult": "Win"
     }
     ```
+
 - Errores posibles:
 
   - 400 Bad Request – Datos de entrada no válidos
@@ -226,6 +270,7 @@
 - Parámetros de Consulta:
 
   - Ninguno
+
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -263,6 +308,7 @@
 - Parámetros de Consulta:
 
   - Ninguno
+
 - Respuesta Exitosa:
 
   - Código: 200 OK
@@ -290,6 +336,7 @@
 - Parámetros de Consulta:
 
   - Ninguno
+
 - Respuesta Exitosa:
 
   - Código: 200 OK

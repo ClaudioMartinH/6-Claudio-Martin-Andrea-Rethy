@@ -21,7 +21,7 @@ export class PlayerController {
     const ID = parseInt(id, 10);
 
     if (isNaN(ID)) {
-      return res.status(400).json({ message: "Invalid player ID" });
+      return res.status(400).json({ message: "Invalid player name" });
     }
 
     try {
@@ -36,7 +36,7 @@ export class PlayerController {
   }
 
   async getPlayerByName(req: Request, res: Response) {
-    const { name } = req.body;
+    const { name } = req.params;
     if (!name) {
       return res.status(400).json({ message: "Missing required field" });
     }
@@ -47,7 +47,7 @@ export class PlayerController {
       }
       return res.status(200).json(player);
     } catch (error: any) {
-      return res.status(404).json({ message: error.message });
+      return res.status(500).json({ message: error.message });
     }
   }
   async createPlayer(req: Request, res: Response) {

@@ -6,7 +6,7 @@ const playerController = new PlayerController();
 
 router.get("/players", playerController.getAllPlayers);
 router.get("/players/:id", playerController.getPlayerById);
-router.get("/players/:name", playerController.getPlayerByName)
+router.get("/players/name/:name", playerController.getPlayerByName);
 router.post("/players", playerController.createPlayer);
 router.put("/players/:id", playerController.updatePlayer);
 
