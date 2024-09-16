@@ -4,12 +4,13 @@ import jwt from "jsonwebtoken";
 const authMiddlewareJWT = (req: Request, res: Response, next: NextFunction) => {
   console.log("Auth Middleware Invoked");
 
-  // Extrae el token de las cookies
-  const token = req.cookies.authToken;
-  console.log("Token in cookies:", token);
+  // Extrae el token del headers
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
+  console.log("Token in Authorization header:", token);
 
   if (!token) {
-    console.log("Token missing in cookies");
+    console.log("Token missing in headers");
     return res.status(401).json({ error: "Token not provided" });
   }
 
