@@ -24,6 +24,6 @@ services:
       - DATABASE_URL=/usr/src/app/data/dev.db
 
 volumes:
-  node_modules: {}
+  node_modules:
   data:
     driver: local
