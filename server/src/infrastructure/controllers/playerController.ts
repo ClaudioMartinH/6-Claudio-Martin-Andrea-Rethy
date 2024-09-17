@@ -119,4 +119,29 @@ export class PlayerController {
         .json({ message: "An error occurred during login" });
     }
   }
+  async guestLogin(_req: Request, res: Response) {
+    try {
+    const name = `ANONIM_${Date.now()}`
+    const guestPlayer = await playerService.createPlayer({name})
+      const token = jwt.sign(
+        {playerName: guestPlayer.name},
+        process.env.JWT_SECRET as string,
+        {
+          expiresIn: "1h",
+        }
+      );
+      return res.status(200).json({
+        id: guestPlayer.id,
+        playerName: guestPlayer.name,
+        token
+      });
+    } catch (error){
+      console.error("Error creating guest user", error);
+      return res
+      .status(500)
+      .json({
+        message: "A error occurred during guest login"
+      })
+    }
+  }
 }
