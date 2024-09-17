@@ -6,6 +6,7 @@ import React, { useState } from "react";
 const URL = "/api/players/"
 const playerId = Number(localStorage.getItem("playerId"));
 const currentUserName = localStorage.getItem("username");
+const token = localStorage.getItem("token");
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -15,16 +16,18 @@ const ProfilePage = () => {
     fetch(`${URL}${playerId}`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      // credentials: 'include',
+      credentials: 'include',
       body: JSON.stringify({ name: username }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
         //  setToken(data.token)
-         if (data.username !== "") {
+         if (data.name !== "") {
+          localStorage.setItem("username", data.name);
           navigate("/home");
           alert("Username successfully updated!")
         } else {

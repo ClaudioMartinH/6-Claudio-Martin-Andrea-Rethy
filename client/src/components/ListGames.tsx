@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const URL = "/api/playerGames/";
 const playerId = Number(localStorage.getItem("playerId"));
+const token = localStorage.getItem("token");
 
 type Game = {
   id: number,
@@ -34,9 +35,10 @@ function getMyGames() {
   fetch(`${URL}${playerId}`, {
     method: 'GET',
     headers: {
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    // credentials: 'include',
+    credentials: 'include',
   })
     .then((response) => response.json())
     .then((data) => {
