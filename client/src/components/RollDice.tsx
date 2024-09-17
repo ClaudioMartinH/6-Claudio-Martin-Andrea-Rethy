@@ -3,6 +3,7 @@ import Dice from "./Dice";
 
 const URL = "/api/playerGames/";
 const playerId = Number(localStorage.getItem("playerId"));
+const token = localStorage.getItem("token");
 
 const RollDice = () => {
     const [state, setState] = useState({
@@ -43,9 +44,10 @@ const RollDice = () => {
         fetch(`${URL}${playerId}`, {
           method: 'POST',
           headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-          // credentials: 'include',
+          credentials: 'include',
           body: JSON.stringify(
             { 
                 "playerId" : playerId,

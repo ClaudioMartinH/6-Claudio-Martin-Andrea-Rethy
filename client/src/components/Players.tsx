@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const URL = "/api/players/";
+const token = localStorage.getItem("token");
 
 type Player = {
   id: number,
@@ -30,21 +31,16 @@ const Players = () => {
   function getPlayers() {
     fetch(`${URL}`, {
       method: 'GET',
-      headers: {
+      headers: { 
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      // credentials: 'include',
+      credentials: 'include',
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setPlayers(data)
-        //  setToken(data.token)
-        //  if (data.id !== 0) {
-          
-        // } else {
-        //   alert("")
-        // }
       } 
     )
       .catch((error) => console.error('Error:', error));
@@ -55,9 +51,9 @@ const Players = () => {
     <div className="text-white text-2xl font-bold">List of All Players</div>
     <ul>
       {
-        players.map((player) => {
+        players.map((player, index) => {
           return (
-            <li className="text-white">{player.name}</li>
+            <li key={index} className="text-white">{player.name}</li>
           )
         })
       }

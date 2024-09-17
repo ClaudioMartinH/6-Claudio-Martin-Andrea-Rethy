@@ -7,6 +7,8 @@ interface SidebarContextType {
   expanded: boolean
 }
 
+const playerName = localStorage.getItem("username");
+
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined)
 
 interface SidebarProps {
@@ -49,7 +51,7 @@ export default function Sidebar({ children }: SidebarProps) {
           `}
           >
             <div className="leading-4">
-              <h4 className="font-semibold text-gray-50">John Doe</h4>
+              <h4 className="font-semibold text-gray-50">{playerName}</h4>
             </div>
             <Link to={"/profile"} className="text-gray-50 hover:bg-gray-800 p-2 rounded-full">
               <LuMoreVertical size={20}  />

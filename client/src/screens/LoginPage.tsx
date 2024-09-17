@@ -3,10 +3,6 @@ import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-// if username and id and token is saved in local storage navigate to "/home"
-// if not, check username with API and save above variables in local storage
-// GET /players/name/:name
-
 const URL = "/api/authentication";
 const playerId = Number(localStorage.getItem("playerId"));
 const playerName = localStorage.getItem("username");
@@ -18,25 +14,23 @@ const LoginPage: React.FC = () => {
 
   useEffect(() => {
     if (playerId && playerName && token) {
-      navigate("/home");
+      checkUser(playerName);
     }
   });
 
-  function checkUser() {
+  function checkUser(name: string) {
     fetch(`${URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      // credentials: 'include',
-      body: JSON.stringify({ playerName: username }),
+      body: JSON.stringify({ playerName: name }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        //  setToken(data.token)
         if (data.token) {
-          // localStorage.setItem("playerId", data.id.toString());
+          localStorage.setItem("playerId", data.id.toString());
           localStorage.setItem("username", data.playerName);
           localStorage.setItem("token", data.token);
           navigate("/home");
@@ -54,7 +48,7 @@ const LoginPage: React.FC = () => {
     if (playerId && playerName && token) {
       navigate("/home");
     } else if (username.trim()) {
-      checkUser();
+      checkUser(username);
     } else {
       alert("Username cannot be empty");
     }

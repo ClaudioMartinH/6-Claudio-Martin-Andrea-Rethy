@@ -5,6 +5,8 @@ const URLloser = "/api/loser";
 const URLwinner = "/api/winner";
 const URLplayerId = "api/players/"
 
+const token = localStorage.getItem("token");
+
 type Ranking = {
     id: number,
     playerId: number,
@@ -21,8 +23,10 @@ type Ranking = {
       const response = await fetch(`${URLloser}`, {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
       });
   
       const data = await response.json();
@@ -46,8 +50,10 @@ async function getLooser(): Promise<string> {
       const response = await fetch(`${URLplayerId}${looserId}`, {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
       });
   
       const data = await response.json();
@@ -69,8 +75,10 @@ async function getLooser(): Promise<string> {
       const response = await fetch(`${URLwinner}`, {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
       });
   
       const data = await response.json();
@@ -94,8 +102,10 @@ async function getLooser(): Promise<string> {
       const response = await fetch(`${URLplayerId}${winnerId}`, {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
       });
   
       const data = await response.json();
@@ -139,9 +149,10 @@ const Rankings = () => {
         fetch(`${URLranking}`, {
             method: 'GET',
             headers: {
+              'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
-            // credentials: 'include',
+            credentials: 'include',
           })
             .then((response) => response.json())
             .then((data) => {
