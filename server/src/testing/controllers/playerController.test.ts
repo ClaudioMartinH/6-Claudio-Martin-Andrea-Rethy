@@ -143,17 +143,6 @@ describe("PlayerController", () => {
   });
 
   describe("getAllPlayers", () => {
-    // it("should return 404 if no players are found", async () => {
-    //   const req = {} as Request;
-    //   const res = {
-    //     status: vi.fn().mockReturnThis(),
-    //     json: vi.fn(),
-    //   } as unknown as Response;
-    //   await playerController.getAllPlayers(req, res);
-    //   expect(res.status).toBeCalledWith(404);
-    //   expect(res.json).toBeCalledWith({ message: "No players found" });
-    // });
-
     it("should return 200 if players are found", async () => {
       await prisma.player.create({
         data: {
@@ -260,6 +249,58 @@ describe("PlayerController", () => {
       expect(res.json).toBeCalledWith({
         message: "Missing required field",
       });
+    });
+  });
+  describe("login", () => {
+    it("should return 200 if credentials are valid", async () => {
+      const player = await prisma.player.create({
+        data: {
+          name: "Silvia",
+          register_date: new Date(),
+        },
+      });
+      const req = {
+        body: {
+          playerName: player.name,
+        },
+      } as unknown as Request;
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
+      } as unknown as Response;
+      await playerController.login(req, res);
+      expect(res.status).toBeCalledWith(200);
+    });
+    it("should return 401 if credentials are invalid", async () => {
+      const req = {
+        body: {
+          playerName: "Test-Player",
+        },
+      } as unknown as Request;
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
+      } as unknown as Response;
+      await playerController.login(req, res);
+      expect(res.status).toBeCalledWith(401);
+      expect(res.json).toBeCalledWith({ message: "Invalid credentials" });
+    });
+  });
+  describe("guestLogin", () => {
+    it("should return 200 if the player is logged in", async () => {
+      await prisma.player.create({
+        data: {
+          name: `ANONIM_${Date.now()}`,
+          register_date: new Date(),
+        },
+      });
+      const req = {} as Request;
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
+      } as unknown as Response;
+      await playerController.guestLogin(req, res);
+      expect(res.status).toBeCalledWith(200);
     });
   });
 });
