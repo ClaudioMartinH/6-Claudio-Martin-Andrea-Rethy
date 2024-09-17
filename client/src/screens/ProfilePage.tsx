@@ -22,10 +22,20 @@ const ProfilePage = () => {
       credentials: 'include',
       body: JSON.stringify({ name: username }),
     })
-      .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((errorData) => {
+          if (response.status === 403 && errorData.error === "Invalid token") {
+            navigate("/");
+          } else {
+            throw new Error(errorData.error || 'An error occured');
+          }
+        });
+      }
+      return response.json();
+    })
       .then((data) => {
         console.log(data)
-        //  setToken(data.token)
          if (data.name !== "") {
           localStorage.setItem("username", data.name);
           navigate("/home");

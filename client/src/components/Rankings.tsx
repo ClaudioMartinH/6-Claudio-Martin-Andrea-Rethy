@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const URLranking = "/api/ranking";
 const URLloser = "/api/loser";
@@ -124,6 +125,7 @@ async function getLooser(): Promise<string> {
 
 
 const Rankings = () => {
+    const navigate = useNavigate();
     const [rankings, setRankings] = useState<Ranking[]>([]);
     const [looser, setLooser] = useState<string | null>(null);
     const [winner, setWinner] = useState<string | null>(null);
@@ -154,16 +156,21 @@ const Rankings = () => {
             },
             credentials: 'include',
           })
-            .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              return response.json().then((errorData) => {
+                if (response.status === 403 && errorData.error === "Invalid token") {
+                  navigate("/");
+                } else {
+                  throw new Error(errorData.error || 'An error occured');
+                }
+              });
+            }
+            return response.json();
+          })
             .then((data) => {
               console.log(data);
               setRankings(data)
-              //  setToken(data.token)
-              //  if (data.id !== 0) {
-                
-              // } else {
-              //   alert("")
-              // }
             } 
           )
             .catch((error) => console.error('Error:', error));

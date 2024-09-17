@@ -8,11 +8,6 @@ const URL = "/api/players"
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
-  // const [token, setToken] = useState(0);
-
-  // useEffect(() => {
-  //   console.log('Token updated:', token);
-  // }, [token]);
 
   function createUser() {
     fetch(`${URL}`, {
@@ -20,17 +15,15 @@ const RegisterPage: React.FC = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      // credentials: 'include',
       body: JSON.stringify({ name: username }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        //  setToken(data.token)
         if (data.id !== 0) {
           localStorage.setItem("playerId", data.id.toString());
           localStorage.setItem("username", data.name);
-          navigate("/home");
+          navigate("/");
         } else {
           alert("Invalid user! Try again")
         }

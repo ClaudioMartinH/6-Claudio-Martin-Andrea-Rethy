@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const URL = "/api/players/";
 const token = localStorage.getItem("token");
@@ -10,6 +11,7 @@ type Player = {
 }
 
 const Players = () => {
+  const navigate = useNavigate();
   const [ players, setPlayers ] = useState<Player[]>([])
 
   useEffect(() => {
@@ -37,7 +39,18 @@ const Players = () => {
       },
       credentials: 'include',
     })
-      .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((errorData) => {
+          if (response.status === 403 && errorData.error === "Invalid token") {
+            navigate("/");
+          } else {
+            throw new Error(errorData.error || 'An error occured');
+          }
+        });
+      }
+      return response.json();
+    })
       .then((data) => {
         console.log(data);
         setPlayers(data)
