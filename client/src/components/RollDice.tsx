@@ -1,43 +1,45 @@
 import { useState } from "react";
 import Dice from "./Dice";
+import { useNavigate } from "react-router-dom";
 
 const URL = "/api/playerGames/";
 const playerId = Number(localStorage.getItem("playerId"));
 const token = localStorage.getItem("token");
 
 const RollDice = () => {
-    const [state, setState] = useState({
-        dice1: 1 as 1 | 2 | 3 | 4 | 5 | 6,
-        dice2: 1 as 1 | 2 | 3 | 4 | 5 | 6,
-        rolling: false,
-        result: "",
-        totalScore: 0,
-        rollCount: 0
-    });
+  const navigate = useNavigate();
+  const [state, setState] = useState({
+      dice1: 1 as 1 | 2 | 3 | 4 | 5 | 6,
+      dice2: 1 as 1 | 2 | 3 | 4 | 5 | 6,
+      rolling: false,
+      result: "",
+      totalScore: 0,
+      rollCount: 0
+  });
 
-    const { dice1, dice2, rolling, result, totalScore, rollCount } = state
+  const { dice1, dice2, rolling, result, totalScore, rollCount } = state
 
-    const roll = () => {
-        const newDice1 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
-        const newDice2 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
-        const score = newDice1 + newDice2;
-        const result = score === 7 ? "Win" : "Loose"
-        const newScore = score === 7 ? totalScore + 1 : totalScore
-        const newCount = rollCount + 1
-        setState({
-            dice1: newDice1,
-            dice2: newDice2,
-            rolling: true,
-            result: result,
-            totalScore: newScore,
-            rollCount: newCount
-        });
+  const roll = () => {
+      const newDice1 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
+      const newDice2 = Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
+      const score = newDice1 + newDice2;
+      const result = score === 7 ? "Win" : "Loose"
+      const newScore = score === 7 ? totalScore + 1 : totalScore
+      const newCount = rollCount + 1
+      setState({
+          dice1: newDice1,
+          dice2: newDice2,
+          rolling: true,
+          result: result,
+          totalScore: newScore,
+          rollCount: newCount
+      });
 
-        setTimeout(() => {
-            setState((prevState) => ({...prevState, rolling: false}))
-        }, 500);
+      setTimeout(() => {
+          setState((prevState) => ({...prevState, rolling: false}))
+      }, 500);
 
-        postGame(dice1, dice2, result);
+      postGame(dice1, dice2, result);
     }
 
     function postGame(dice1R: number, dice2R: number, oResult: string) {
@@ -57,19 +59,23 @@ const RollDice = () => {
             }
           ),
         })
-          .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            return response.json().then((errorData) => {
+              if (response.status === 403 && errorData.error === "Invalid token") {
+                navigate("/");
+              } else {
+                throw new Error(errorData.error || 'An error occured');
+              }
+            });
+          }
+          return response.json();
+        })
           .then((data) => {
             console.log(data)
-            //  setToken(data.token)
-            //  if (data.id !== 0) {
-              
-            // } else {
-            //   alert("")
-            // }
-          } 
-        )
+          })
           .catch((error) => console.error('Error:', error));
-      }
+    }
 
     const deleteGames = () => {
         setState({
