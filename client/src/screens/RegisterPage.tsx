@@ -28,6 +28,8 @@ const RegisterPage: React.FC = () => {
         console.log(data)
         //  setToken(data.token)
         if (data.id !== 0) {
+          localStorage.setItem("playerId", data.id.toString());
+          localStorage.setItem("username", data.name);
           navigate("/home");
         } else {
           alert("Invalid user! Try again")
