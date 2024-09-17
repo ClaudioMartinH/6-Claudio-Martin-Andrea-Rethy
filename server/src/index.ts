@@ -6,7 +6,9 @@ import loginRoutes from "./routes/login.routes.js";
 import authMiddlewareJWT from "./middleware/authMiddleware.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import { PlayerController } from "./infrastructure/controllers/playerController.js";
 
+const playerController = new PlayerController();
 dotenv.config();
 const app = express();
 app.use(
@@ -14,7 +16,7 @@ app.use(
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    // credentials: true
+    credentials: true
   })
 );
 
@@ -23,9 +25,8 @@ app.options("*", cors());
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-// a login no se le añade protección porque es donde generamos el token
 app.use("/api", loginRoutes);
-// una vez añadida la seguridad hay que manejar en cada llamada que se incluya el token generado
+app.post("/api/players", playerController.createPlayer);
 app.use("/api", authMiddlewareJWT, playersRoutes);
 app.use("/api", authMiddlewareJWT, gamesRoutes);
 app.use("/api", authMiddlewareJWT, rankingsRoutes);
