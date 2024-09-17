@@ -1,17 +1,60 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+// if username and id and token is saved in local storage navigate to "/home"
+// if not, check username with API and save above variables in local storage
+// GET /players/name/:name
+
+const URL = "/api/authentication";
+const playerId = Number(localStorage.getItem("playerId"));
+const playerName = localStorage.getItem("username");
+const token = localStorage.getItem("token");
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
 
+  useEffect(() => {
+    if (playerId && playerName && token) {
+      navigate("/home");
+    }
+  });
+
+  function checkUser() {
+    fetch(`${URL}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // credentials: 'include',
+      body: JSON.stringify({ playerName: username }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        //  setToken(data.token)
+        if (data.token) {
+          // localStorage.setItem("playerId", data.id.toString());
+          localStorage.setItem("username", data.playerName);
+          localStorage.setItem("token", data.token);
+          navigate("/home");
+        } else {
+          alert("Invalid user! Try again")
+        }
+      }
+      )
+      .catch((error) => alert(`Error:, ${error}`)
+    );
+  }
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username.trim()) {
+    if (playerId && playerName && token) {
       navigate("/home");
+    } else if (username.trim()) {
+      checkUser();
     } else {
       alert("Username cannot be empty");
     }
