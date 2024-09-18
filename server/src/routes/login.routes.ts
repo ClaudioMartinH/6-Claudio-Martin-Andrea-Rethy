@@ -10,5 +10,8 @@ router.post("/authentication", (req: Request, res: Response) =>
 router.post("/guest", (req: Request, res: Response) => {
   playerController.guestLogin(req, res)
 })
+router.post("/players", (req: Request, res: Response) => {
+  playerController.createPlayer(req, res)
+});
 
 export default router;
