@@ -1,23 +1,14 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const URL = "/api/authentication";
 const URLguest = "/api/guest";
-const playerId = Number(localStorage.getItem("playerId"));
-const playerName = localStorage.getItem("username");
-const token = localStorage.getItem("token");
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    if (playerId && playerName && token) {
-      checkUser(playerName);
-    }
-  });
 
   function checkUser(name: string) {
     fetch(`${URL}`, {
@@ -70,9 +61,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (playerId && playerName && token) {
-      navigate("/home");
-    } else if (username.trim()) {
+    if (username.trim()) {
       checkUser(username);
     } else {
       alert("Username cannot be empty");
