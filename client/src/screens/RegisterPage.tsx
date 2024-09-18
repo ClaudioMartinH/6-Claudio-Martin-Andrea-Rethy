@@ -1,7 +1,7 @@
 import dice from '../assets/dice.jpg'
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import React, { useState, /*useEffect*/ } from "react";
+import React, { useState } from "react";
 
 const URL = "/api/players"
 

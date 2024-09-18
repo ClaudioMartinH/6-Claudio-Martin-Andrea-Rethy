@@ -55,7 +55,6 @@ function getMyGames() {
     return response.json();
   })
     .then((data) => {
-      console.log(data);
       setGames(data);
     } 
   )
