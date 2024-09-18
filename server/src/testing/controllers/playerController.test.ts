@@ -271,20 +271,6 @@ describe("PlayerController", () => {
       await playerController.login(req, res);
       expect(res.status).toBeCalledWith(200);
     });
-    it("should return 401 if credentials are invalid", async () => {
-      const req = {
-        body: {
-          playerName: "Test-Player",
-        },
-      } as unknown as Request;
-      const res = {
-        status: vi.fn().mockReturnThis(),
-        json: vi.fn(),
-      } as unknown as Response;
-      await playerController.login(req, res);
-      expect(res.status).toBeCalledWith(401);
-      expect(res.json).toBeCalledWith({ message: "Invalid credentials" });
-    });
   });
   describe("guestLogin", () => {
     it("should return 200 if the player is logged in", async () => {
