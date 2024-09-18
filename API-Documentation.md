@@ -30,6 +30,7 @@
   - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
   - 404 Resource Not Found – Usuario no encontrado
   - 400 Bad Request – Datos de entrada no válidos
+  - 401 Unauthorized
 
 ### POST /guest
 
@@ -93,7 +94,7 @@
 - Errores posibles:
   - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
   - 404 Resource not found – Usuarios no encontrados
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### GET /players/:id
 
@@ -119,7 +120,7 @@
   - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
   - 404 Resource Not Found – Usuario no encontrado
   - 400 Bad Request – Datos de entrada no válidos
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### GET /players/name/:name
 
@@ -149,7 +150,7 @@
   - 500 Internal Server Error – Error en el servidor al obtener los usuarios.
   - 404 Resource Not Found – Usuario no encontrado
   - 400 Bad Request – Datos de entrada no válidos
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### POST /players
 
@@ -210,7 +211,7 @@
   - 404 Not Found – Usuario no encontrado.
   - 400 Bad Request – Datos de entrada no válidos
   - 500 Internal Server Error – Error en el servidor al actualizar el usuario
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ## Endpoints Games
 
@@ -249,7 +250,7 @@
   - 500 Internal Server Error – Error en el servidor al obtener las tiradas del usuario.
   - 404 Resource Not Found – Usuario no encontrado
   - 400 Bad Request – Datos de entrada no válidos
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### POST /playerGames/:id
 
@@ -286,7 +287,7 @@
 
   - 400 Bad Request – Datos de entrada no válidos
   - 500 Internal Server Error – Error en el servidor al crear el usuario
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### DELETE /playerGames/:id
 
@@ -307,7 +308,7 @@
   - 404 Not Found – Usuario no encontrado.
   - 400 Bad Request – Datos de entrada no válidos
   - 500 Internal Server Error – Error en el servidor al actualizar el usuario
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ## Endpoints Rankings
 
@@ -347,7 +348,7 @@
 - Errores posibles:
   - 500 Internal Server Error – Error en el servidor al obtener los rankings
   - 404 Resource not found – Rankings no encontrados
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### GET /loser
 
@@ -375,7 +376,7 @@
 - Errores posibles:
   - 500 Internal Server Error – Error en el servidor al obtener el ranking
   - 404 Resource not found – Ranking no encontrado
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
 
 ### GET /winner
 
@@ -403,4 +404,4 @@
 - Errores posibles:
   - 500 Internal Server Error – Error en el servidor al obtener el ranking
   - 404 Resource not found – Ranking no encontrado
-  - 401 Unauthorized - Token no valido
+  - 403 Forbidden - Token no valido
