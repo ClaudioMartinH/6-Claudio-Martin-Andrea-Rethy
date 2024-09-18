@@ -6,9 +6,9 @@ import loginRoutes from "./routes/login.routes.js";
 import authMiddlewareJWT from "./middleware/authMiddleware.js";
 import dotenv from "dotenv";
 import cors from "cors";
-import { PlayerController } from "./infrastructure/controllers/playerController.js";
+// import { PlayerController } from "./infrastructure/controllers/playerController.js";
 
-const playerController = new PlayerController();
+// const playerController = new PlayerController();
 dotenv.config();
 const app = express();
 app.use(
@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use("/api", loginRoutes);
-app.post("/api/players", playerController.createPlayer);
+// app.post("/api/players", playerController.createPlayer);
 app.use("/api", authMiddlewareJWT, playersRoutes);
 app.use("/api", authMiddlewareJWT, gamesRoutes);
 app.use("/api", authMiddlewareJWT, rankingsRoutes);
