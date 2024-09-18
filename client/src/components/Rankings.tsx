@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Player } from "./Players";
 
 const URLranking = "/api/ranking";
 const URLloser = "/api/loser";
 const URLwinner = "/api/winner";
-const URLplayerId = "api/players/"
+const URLplayer = "api/players/"
 
 const token = localStorage.getItem("token");
 
@@ -16,8 +17,6 @@ type Ranking = {
     totalLost: number,
     winPercentage: number
 }
-
-
 
   async function getLooserId(): Promise<number> {
     try {
@@ -31,7 +30,6 @@ type Ranking = {
       });
   
       const data = await response.json();
-      console.log(data);
   
       if (data.playerId !== undefined) {
         return data.playerId;
@@ -48,7 +46,7 @@ type Ranking = {
 async function getLooser(): Promise<string> {
     try {
       const looserId = await getLooserId();
-      const response = await fetch(`${URLplayerId}${looserId}`, {
+      const response = await fetch(`${URLplayer}${looserId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -58,7 +56,6 @@ async function getLooser(): Promise<string> {
       });
   
       const data = await response.json();
-      console.log(data);
   
       if (data.name !== undefined) {
         return data.name;
@@ -83,7 +80,6 @@ async function getLooser(): Promise<string> {
       });
   
       const data = await response.json();
-      console.log(data);
   
       if (data.playerId !== undefined) {
         return data.playerId;
@@ -100,7 +96,7 @@ async function getLooser(): Promise<string> {
   async function getWinner(): Promise<string> {
     try {
       const winnerId = await getWinnerId();
-      const response = await fetch(`${URLplayerId}${winnerId}`, {
+      const response = await fetch(`${URLplayer}${winnerId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -110,7 +106,6 @@ async function getLooser(): Promise<string> {
       });
   
       const data = await response.json();
-      console.log(data);
   
       if (data.name !== undefined) {
         return data.name;
@@ -129,21 +124,27 @@ const Rankings = () => {
     const [rankings, setRankings] = useState<Ranking[]>([]);
     const [looser, setLooser] = useState<string | null>(null);
     const [winner, setWinner] = useState<string | null>(null);
+    const [players, setPlayers] = useState<Player[]>([]);
+
+    const fetchData = async () => {
+      try {
+        await getRankings();
+        await getPlayers();
+        const looserResult = await getLooser();
+        const winnerResult = await getWinner();
+        setLooser(looserResult);
+        setWinner(winnerResult);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    const loadPage = async () => {
+      await fetchData()
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            await getRankings();
-            const looserResult = await getLooser();
-            const winnerResult = await getWinner();
-            setLooser(looserResult);
-            setWinner(winnerResult);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
-      
-        fetchData();
+        loadPage();
       }, []);
       
 
@@ -169,11 +170,31 @@ const Rankings = () => {
             return response.json();
           })
             .then((data) => {
-              console.log(data);
               setRankings(data)
             } 
           )
             .catch((error) => console.error('Error:', error));
+      }
+
+      async function getPlayers() {
+            fetch(`${URLplayer}`, {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              credentials: 'include',
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                rankings.forEach(ranking => {
+                  data.filter((element:Player) => {
+                    return element.id === ranking.playerId
+                  })
+                });
+                setPlayers(data);
+              })
+              .catch((error) => alert(`Error:, ${error}`));
       }
 
   return (
@@ -188,11 +209,11 @@ const Rankings = () => {
                 <h2 className='text-2xl'>All Rankings</h2>
                 <ul>
                     {
-                        rankings.map((ranking, index) => (
+                        players.map((player, index) => (
                             <li key={index} className="text-white">
-                              {index}
+                              {index + 1}
                               {". "}
-                              {ranking.playerId}
+                              {player.name}
                               </li>
                           ))
                     }

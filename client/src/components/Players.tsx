@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const URL = "/api/players/";
 const token = localStorage.getItem("token");
 
-type Player = {
+export type Player = {
   id: number,
   name: string,
   register_date: string
@@ -14,12 +14,12 @@ const Players = () => {
   const navigate = useNavigate();
   const [ players, setPlayers ] = useState<Player[]>([])
 
-  useEffect(() => {
-    const onWindowLoad = () => {
-      getPlayers();
-    };
+  const onWindowLoad = () => {
+    getPlayers();
+  };
 
-    if (document.readyState === "complete") {
+  useEffect(() => {
+   if (document.readyState === "complete") {
       onWindowLoad();
     } else {
       window.addEventListener("load", onWindowLoad);
@@ -52,7 +52,6 @@ const Players = () => {
       return response.json();
     })
       .then((data) => {
-        console.log(data);
         setPlayers(data)
       } 
     )
