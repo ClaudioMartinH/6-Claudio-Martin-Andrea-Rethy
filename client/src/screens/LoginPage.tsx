@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 const URL = "/api/authentication";
+const URLguest = "/api/guest";
 const playerId = Number(localStorage.getItem("playerId"));
 const playerName = localStorage.getItem("username");
 const token = localStorage.getItem("token");
@@ -36,6 +37,30 @@ const LoginPage: React.FC = () => {
           navigate("/home");
         } else {
           alert("Invalid user! Try again")
+        }
+      }
+      )
+      .catch((error) => alert(`Error:, ${error}`)
+    );
+  }
+
+  function handleGuestUser() {
+    fetch(`${URLguest}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        if (data.token) {
+          localStorage.setItem("playerId", data.id.toString());
+          localStorage.setItem("username", data.playerName);
+          localStorage.setItem("token", data.token);
+          navigate("/home");
+        } else {
+          alert("We experienced an error. Please try again later.")
         }
       }
       )
@@ -76,7 +101,7 @@ const LoginPage: React.FC = () => {
           </div> */}
           <button type='submit' className='py-3 px-6 m-2 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:opacity-85'>Login</button>
           
-          <p className='text-white'>Don't have an account? <Link to={"/register"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</Link> / <Link to={"/home"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Continue as guest</Link></p>
+          <p className='text-white'>Don't have an account? <Link to={"/register"} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Register</Link> / <span onClick={handleGuestUser} className='underline underline-offset-2 hover:text-slate-300 font-semibold'>Continue as guest</span></p>
           
         </form>
       </div>
