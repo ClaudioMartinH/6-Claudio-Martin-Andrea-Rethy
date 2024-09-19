@@ -2,8 +2,8 @@
 <br>
  <a href="" rel="noopener">
 
-<img width=200px height=200px src="[https://tenor.com/view/dice-roll-rolling-rolling-dice-roll-dice-gif-21283859](https://tenor.com/ca/view/dice-roll-rolling-rolling-dice-roll-dice-gif-21283859)" alt="Project logo">
-</a>
+![Dados](https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif)
+
  
 <h3  align="center" style="color: #00FF;">Entrega 6.1 <br>Joc de Daus<br> por Andrea Rethy y Claudio Martin</h3>
 
