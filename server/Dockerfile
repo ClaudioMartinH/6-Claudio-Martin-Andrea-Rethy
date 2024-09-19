@@ -10,17 +10,12 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY prisma ./prisma/
+COPY . .
 
 RUN npx prisma generate
 
-COPY . .
-
 RUN npm run build
-RUN ls -la dist
-RUN ls -R /usr/src/app
-RUN cat dist/index.js || echo "index.js no existe"
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

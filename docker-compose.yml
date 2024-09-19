@@ -20,7 +20,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./server:/usr/src/app
+     #- ./server:/usr/src/app
       - ./data:/usr/src/app/data
       - /usr/src/app/node_modules
   
