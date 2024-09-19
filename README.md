@@ -1,8 +1,10 @@
 ﻿<p align="center">
 <br>
  <a href="" rel="noopener">
- <div class="tenor-gif-embed" data-postid="21283859" data-share-method="host" data-aspect-ratio="1.78771" data-width="100%"><a href="https://tenor.com/view/dice-roll-rolling-rolling-dice-roll-dice-gif-21283859">Dice Roll GIF</a>from <a href="https://tenor.com/search/dice-gifs">Dice GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+<img width=200px height=200px src="https://tenor.com/view/dice-roll-rolling-rolling-dice-roll-dice-gif-21283859" alt="Project logo">
 </a>
+ 
 <h3  align="center" style="color: #00FF;">Entrega 6.1 <br>Joc de Daus<br> por Andrea Rethy y Claudio Martin</h3>
 
 <div style="background-color: #333333; color: #D3D3D3; padding: 20px; border-radius: 10px;">
