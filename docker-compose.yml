@@ -10,6 +10,8 @@ services:
       - node_modules:/usr/src/app/node_modules
     depends_on:
       - backend
+    environment:
+      - VITE_API_URL=http://backend:3000
 
   backend:
     build:
@@ -20,9 +22,8 @@ services:
     volumes:
       - ./server:/usr/src/app
       - ./data:/usr/src/app/data
-    environment:
-      - DATABASE_URL=/usr/src/app/data/dev.db
-
+      - /usr/src/app/node_modules
+  
 volumes:
   node_modules:
   data:

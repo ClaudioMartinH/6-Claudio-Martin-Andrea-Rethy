@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
+    "types": [
+      "@types/node",
+      "@prisma/client"
+    ],
     "target": "ES6",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
     "outDir": "./dist",
+    "rootDir": "./src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
@@ -29,32 +34,3 @@
     "node_modules"
   ]
 }
-// {
-//   "compilerOptions": {
-//     "target": "ES6",
-//     "module": "ESNext",
-//     "strict": true,
-//     "outDir": "./dist",
-//     "esModuleInterop": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "removeComments": true,
-//     "skipLibCheck": true,
-//     "allowSyntheticDefaultImports": true,
-//     "noEmitHelpers": true,
-//     "noImplicitReturns": true,
-//     "noUnusedLocals": true,
-//     "noUnusedParameters": true,
-//     "baseUrl": ".",
-//     "paths": {
-//       "@prisma/client": [
-//         "./node_modules/@prisma/client"
-//       ]
-//     }
-//   },
-//   "include": [
-//     "./src/**/*.ts"
-//   ],
-//   "exclude": [
-//     "node_modules"
-//   ]
-// }

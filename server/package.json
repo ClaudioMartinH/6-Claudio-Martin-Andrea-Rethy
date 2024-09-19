@@ -2,13 +2,13 @@
   "name": "6-claudio-martin-andrea-rethy",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/src/index.js",
+  "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./dist/src/index.js",
+    "dev": "nodemon dist/index.js",
     "test": "vitest",
     "build": "tsc",
-    "start": "node ./dist/src/index.js"
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "ClaudioMartinH & Andrea Rethy",
