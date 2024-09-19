@@ -3,8 +3,8 @@ import Dice from "./Dice";
 import { useNavigate } from "react-router-dom";
 
 const URL = "/api/playerGames/";
-const playerId = Number(localStorage.getItem("playerId"));
-const token = localStorage.getItem("token");
+const playerId = Number(sessionStorage.getItem("playerId"));
+const token = sessionStorage.getItem("token");
 
 const RollDice = () => {
   const navigate = useNavigate();

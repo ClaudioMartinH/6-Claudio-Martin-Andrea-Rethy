@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const URL = "/api/players/";
-const token = localStorage.getItem("token");
+const token = sessionStorage.getItem("token");
 
 export type Player = {
   id: number,

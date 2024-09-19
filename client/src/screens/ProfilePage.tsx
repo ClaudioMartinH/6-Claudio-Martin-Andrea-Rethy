@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 const URL = "/api/players/"
-const playerId = Number(localStorage.getItem("playerId"));
-const currentUserName = localStorage.getItem("username");
-const token = localStorage.getItem("token");
+const playerId = Number(sessionStorage.getItem("playerId"));
+const currentUserName = sessionStorage.getItem("username");
+const token = sessionStorage.getItem("token");
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const ProfilePage = () => {
       .then((data) => {
         console.log(data)
          if (data.name !== "") {
-          localStorage.setItem("username", data.name);
+          sessionStorage.setItem("username", data.name);
           navigate("/home");
           alert("Username successfully updated!")
         } else {

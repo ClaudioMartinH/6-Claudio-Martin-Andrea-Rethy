@@ -7,8 +7,6 @@ interface SidebarContextType {
   expanded: boolean
 }
 
-const playerName = localStorage.getItem("username");
-
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined)
 
 interface SidebarProps {
@@ -16,7 +14,8 @@ interface SidebarProps {
 }
 export default function Sidebar({ children }: SidebarProps) {
   const [expanded, setExpanded] = useState(true)
-  
+  const playerName = sessionStorage.getItem("username");
+
   return (
     <aside className="h-screen">
       <nav className="h-full flex flex-col bg-slate-950 border-r border-slate-500 shadow-sm">
