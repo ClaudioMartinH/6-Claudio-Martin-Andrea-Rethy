@@ -21,8 +21,8 @@ const RegisterPage: React.FC = () => {
       .then((data) => {
         console.log(data)
         if (data.id !== 0) {
-          localStorage.setItem("playerId", data.id.toString());
-          localStorage.setItem("username", data.name);
+          sessionStorage.setItem("playerId", data.id.toString());
+          sessionStorage.setItem("username", data.name);
           navigate("/");
         } else {
           alert("Invalid user! Try again")

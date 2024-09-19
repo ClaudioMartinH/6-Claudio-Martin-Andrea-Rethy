@@ -7,7 +7,7 @@ const URLloser = "/api/loser";
 const URLwinner = "/api/winner";
 const URLplayer = "api/players/"
 
-const token = localStorage.getItem("token");
+const token = sessionStorage.getItem("token");
 
 type Ranking = {
     id: number,

@@ -22,9 +22,9 @@ const LoginPage: React.FC = () => {
       .then((data) => {
         console.log(data)
         if (data.token) {
-          localStorage.setItem("playerId", data.id.toString());
-          localStorage.setItem("username", data.playerName);
-          localStorage.setItem("token", data.token);
+          sessionStorage.setItem("playerId", data.id.toString());
+          sessionStorage.setItem("username", data.playerName);
+          sessionStorage.setItem("token", data.token);
           navigate("/home");
         } else {
           alert("Invalid user! Try again")
@@ -46,9 +46,9 @@ const LoginPage: React.FC = () => {
       .then((data) => {
         console.log(data)
         if (data.token) {
-          localStorage.setItem("playerId", data.id.toString());
-          localStorage.setItem("username", data.playerName);
-          localStorage.setItem("token", data.token);
+          sessionStorage.setItem("playerId", data.id.toString());
+          sessionStorage.setItem("username", data.playerName);
+          sessionStorage.setItem("token", data.token);
           navigate("/home");
         } else {
           alert("We experienced an error. Please try again later.")
