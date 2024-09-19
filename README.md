@@ -2,7 +2,8 @@
 <br>
  <a href="" rel="noopener">
 
-![Dados](https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif)
+<a align="center"> ![Dados Realistas](ruta/a/tu/gif.gif)
+</a>
 
  
 <h3  align="center" style="color: #00FF;">Entrega 6.1 <br>Joc de Daus<br> por Andrea Rethy y Claudio Martin</h3>
