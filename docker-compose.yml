@@ -17,15 +17,14 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    env_file:
+      - ./server/.env
     ports:
       - "3000:3000"
     volumes:
       - ./data:/usr/src/app/data
       - /usr/src/app/node_modules
       - ./db:/server/prisma/db
-    environment:
-      - DATABASE_URL=file:./dev.db 
-      - JWT_SECRET=2c146a3da80f85866a3083e51e631c207fb45456ad86569992f1445a4043f788
   
 volumes:
   node_modules:
