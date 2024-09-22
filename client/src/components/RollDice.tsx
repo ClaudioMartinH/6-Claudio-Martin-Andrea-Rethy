@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dice from "./Dice";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +7,8 @@ const URL = "/api/playerGames/";
 
 const RollDice = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState<string | null>(null);
+  const [playerId, setPlayerId] = useState<number | null>(null);
   const [state, setState] = useState({
       dice1: 1 as 1 | 2 | 3 | 4 | 5 | 6,
       dice2: 1 as 1 | 2 | 3 | 4 | 5 | 6,
@@ -16,8 +18,10 @@ const RollDice = () => {
       rollCount: 0
   });
 
-  const playerId = Number(sessionStorage.getItem("playerId"));
-  const token = sessionStorage.getItem("token");
+  useEffect(() => {
+    setToken(sessionStorage.getItem("token"))
+    setPlayerId(Number(sessionStorage.getItem("playerId")))
+  }, [token, playerId]);
 
   const { dice1, dice2, rolling, result, totalScore, rollCount } = state
 
