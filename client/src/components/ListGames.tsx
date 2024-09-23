@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,22 +19,21 @@ const ListGames = () => {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    setToken(sessionStorage.getItem("token"));
-    setPlayerId(Number(sessionStorage.getItem("playerId")));
+    const storedToken = sessionStorage.getItem('token');
+    const storedPlayerId = sessionStorage.getItem('playerId');
 
-    const onWindowLoad = () => {
-      getMyGames();
-    };
-
-    if (document.readyState === "complete") {
-      onWindowLoad();
+    if (storedToken && storedPlayerId) {
+      setToken(storedToken);
+      setPlayerId(Number(storedPlayerId));
     } else {
-      window.addEventListener("load", onWindowLoad);
+      navigate('/');
     }
+  }, []);
 
-    return () => {
-      window.removeEventListener("load", onWindowLoad);
-    };
+  useEffect(() => {
+    if (token && playerId !== null) {
+      getMyGames();
+    }
   }, [token, playerId]);
 
 function getMyGames() {
@@ -64,6 +64,24 @@ function getMyGames() {
     .catch((error) => console.error('Error:', error));
 }
 
+function deleteGamesId() {
+  setGames([]);
+  fetch(`${URL}${playerId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    } 
+  )
+    .catch((error) => console.error('Error:', error));
+}
+
   return (
     <>
       <div className='text-white text-2xl font-bold'>List of My Games</div>
@@ -81,11 +99,15 @@ function getMyGames() {
                 {game.overallResult}
                 </li>
             ))
-          ) : (
+          )
+           : (
             <li className="text-white">{"Games not found"}</li>
           )
         }
       </ul>
+      <button onClick={deleteGamesId} className="py-3 px-6 m-2 rounded-md bg-slate-800 text-white text-lg font-semibold hover:opacity-85">
+          Delete History
+      </button>
     </>
   )
 }

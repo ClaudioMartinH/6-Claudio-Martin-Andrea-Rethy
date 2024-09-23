@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import Dice from "./Dice";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +19,16 @@ const RollDice = () => {
   });
 
   useEffect(() => {
-    setToken(sessionStorage.getItem("token"));
-    setPlayerId(Number(sessionStorage.getItem("playerId")));
-  }, [token, playerId]);
+    const storedToken = sessionStorage.getItem('token');
+    const storedPlayerId = sessionStorage.getItem('playerId');
+
+    if (storedToken && storedPlayerId) {
+      setToken(storedToken);
+      setPlayerId(Number(storedPlayerId));
+    } else {
+      navigate('/');
+    }
+  }, []);
 
   const { dice1, dice2, rolling, result, totalScore, rollCount } = state
 
@@ -44,7 +52,7 @@ const RollDice = () => {
           setState((prevState) => ({...prevState, rolling: false}))
       }, 500);
 
-      postGame(dice1, dice2, result);
+      postGame(newDice1, newDice2, result);
     }
 
     function postGame(dice1R: number, dice2R: number, oResult: string) {
@@ -79,34 +87,34 @@ const RollDice = () => {
           .catch((error) => console.error('Error:', error));
     }
 
-    const deleteGames = () => {
-        setState({
-            dice1: 1,
-            dice2: 1,
-            rolling: false,
-            result: "",
-            totalScore: 0,
-            rollCount: 0
-        });
-        deleteGamesId();
-    }
+    // const deleteGames = () => {
+    //     setState({
+    //         dice1: 1,
+    //         dice2: 1,
+    //         rolling: false,
+    //         result: "",
+    //         totalScore: 0,
+    //         rollCount: 0
+    //     });
+    //     deleteGamesId();
+    // }
 
-    function deleteGamesId() {
-        fetch(`${URL}${playerId}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
-          } 
-        )
-          .catch((error) => console.error('Error:', error));
-      }
+    // function deleteGamesId() {
+    //     fetch(`${URL}${playerId}`, {
+    //       method: 'DELETE',
+    //       headers: {
+    //         'Authorization': `Bearer ${token}`,
+    //         'Content-Type': 'application/json',
+    //       },
+    //       credentials: 'include',
+    //     })
+    //       .then((response) => response.json())
+    //       .then((data) => {
+    //         console.log(data)
+    //       } 
+    //     )
+    //       .catch((error) => console.error('Error:', error));
+    //   }
 
     return (
         <>
@@ -120,11 +128,11 @@ const RollDice = () => {
                 </button>
                 <p className="text-white text-2xl">{result}</p>
                 <p className="text-white text-2xl">Total Score: {totalScore} / {rollCount}</p>
-                {rollCount > 0 && (
+                {/* {rollCount > 0 && (
                     <button onClick={deleteGames} className="py-3 px-6 m-2 rounded-md bg-slate-800 text-white text-lg font-semibold hover:opacity-85">
                         Delete History
                     </button>
-                )}
+                )} */}
             </div>
         </>
     );
