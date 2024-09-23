@@ -67,7 +67,6 @@ const ProfilePage = () => {
       <div className='m-4 p-10 rounded-xl border border-white backdrop-blur-lg shadow-md shadow-slate-500'>
         <form onSubmit={handleUpdate}>
           <h1 className='text-white text-5xl font-semibold my-4'>Update Username</h1>
-          <h2 className='text-white text-2xl font-medium my-4'>{username}</h2>
           <div className='relative'>
             <input className='rounded-md p-3 my-3 border border-white bg-transparent text-white' type='text' placeholder='New Username'  value={username === null ? "" : username} id='username' onChange={(e) => setUsername(e.target.value)} />
             <FaUser className='text-white absolute right-16 top-1/2 -translate-y-2/4'/>
