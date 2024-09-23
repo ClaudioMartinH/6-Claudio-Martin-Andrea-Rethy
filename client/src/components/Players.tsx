@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const URL = "/api/players/";
-const token = sessionStorage.getItem("token");
 
 export type Player = {
   id: number,
@@ -13,12 +12,15 @@ export type Player = {
 const Players = () => {
   const navigate = useNavigate();
   const [ players, setPlayers ] = useState<Player[]>([])
+  const [token, setToken] = useState<string | null>(null);
 
   const onWindowLoad = () => {
     getPlayers();
   };
 
   useEffect(() => {
+    setToken(sessionStorage.getItem("token"));
+
    if (document.readyState === "complete") {
       onWindowLoad();
     } else {
@@ -28,7 +30,7 @@ const Players = () => {
     return () => {
       window.removeEventListener("load", onWindowLoad);
     };
-  }, []);
+  }, [token]);
 
   function getPlayers() {
     fetch(`${URL}`, {

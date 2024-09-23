@@ -7,8 +7,6 @@ const URLloser = "/api/loser";
 const URLwinner = "/api/winner";
 const URLplayer = "api/players/"
 
-const token = sessionStorage.getItem("token");
-
 type Ranking = {
     id: number,
     playerId: number,
@@ -18,7 +16,7 @@ type Ranking = {
     winPercentage: number
 }
 
-  async function getLooserId(): Promise<number> {
+  async function getLooserId(token: string | null): Promise<number> {
     try {
       const response = await fetch(`${URLloser}`, {
         method: 'GET',
@@ -43,9 +41,9 @@ type Ranking = {
   }
   
 
-async function getLooser(): Promise<string> {
+async function getLooser(token: string | null): Promise<string> {
     try {
-      const looserId = await getLooserId();
+      const looserId = await getLooserId(token);
       const response = await fetch(`${URLplayer}${looserId}`, {
         method: 'GET',
         headers: {
@@ -68,7 +66,7 @@ async function getLooser(): Promise<string> {
     }
   }
   
-  async function getWinnerId(): Promise<number> {
+  async function getWinnerId(token: string | null): Promise<number> {
     try {
       const response = await fetch(`${URLwinner}`, {
         method: 'GET',
@@ -93,9 +91,9 @@ async function getLooser(): Promise<string> {
   }
   
 
-  async function getWinner(): Promise<string> {
+  async function getWinner(token: string | null): Promise<string> {
     try {
-      const winnerId = await getWinnerId();
+      const winnerId = await getWinnerId(token);
       const response = await fetch(`${URLplayer}${winnerId}`, {
         method: 'GET',
         headers: {
@@ -121,6 +119,7 @@ async function getLooser(): Promise<string> {
 
 const Rankings = () => {
     const navigate = useNavigate();
+    const [token, setToken] = useState<string | null>(null);
     const [rankings, setRankings] = useState<Ranking[]>([]);
     const [looser, setLooser] = useState<string | null>(null);
     const [winner, setWinner] = useState<string | null>(null);
@@ -130,8 +129,8 @@ const Rankings = () => {
       try {
         await getRankings();
         await getPlayers();
-        const looserResult = await getLooser();
-        const winnerResult = await getWinner();
+        const looserResult = await getLooser(token);
+        const winnerResult = await getWinner(token);
         setLooser(looserResult);
         setWinner(winnerResult);
       } catch (error) {
@@ -144,8 +143,9 @@ const Rankings = () => {
     }
 
     useEffect(() => {
-        loadPage();
-      }, []);
+      setToken(sessionStorage.getItem("token"));
+      loadPage();
+    }, [token]);
       
 
       async function getRankings() {
