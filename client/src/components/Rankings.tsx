@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Player } from "./Players";
@@ -143,8 +144,19 @@ const Rankings = () => {
     }
 
     useEffect(() => {
-      setToken(sessionStorage.getItem("token"));
-      loadPage();
+      const storedToken = sessionStorage.getItem('token');
+  
+      if (storedToken) {
+        setToken(storedToken);
+      } else {
+        navigate('/');
+      }
+    }, []);
+  
+    useEffect(() => {
+      if (token !== null) {
+        loadPage();
+      }
     }, [token]);
       
 

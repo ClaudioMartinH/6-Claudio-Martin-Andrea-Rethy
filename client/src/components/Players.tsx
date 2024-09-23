@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,17 +20,19 @@ const Players = () => {
   };
 
   useEffect(() => {
-    setToken(sessionStorage.getItem("token"));
+    const storedToken = sessionStorage.getItem('token');
 
-   if (document.readyState === "complete") {
-      onWindowLoad();
+    if (storedToken) {
+      setToken(storedToken);
     } else {
-      window.addEventListener("load", onWindowLoad);
+      navigate('/');
     }
+  }, []);
 
-    return () => {
-      window.removeEventListener("load", onWindowLoad);
-    };
+  useEffect(() => {
+    if (token !== null) {
+      onWindowLoad();
+    }
   }, [token]);
 
   function getPlayers() {
