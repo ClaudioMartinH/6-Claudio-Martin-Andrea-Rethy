@@ -5,7 +5,6 @@
 <a align="center"> ![Dados Realistas](ruta/a/tu/gif.gif)
 </a>
 
- 
 <h3  align="center" style="color: #00FF;">Entrega 6.1 <br>Joc de Daus<br> por Andrea Rethy y Claudio Martin</h3>
 
 <div style="background-color: #333333; color: #D3D3D3; padding: 20px; border-radius: 10px;">
@@ -17,7 +16,6 @@
 ![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
 ![React](https://img.shields.io/badge/React-v18.3.1-blue)
 ![Docker](https://img.shields.io/badge/Docker-v27.2.1-blue)
-
 
 ## 🚀 Descripción
 
@@ -44,12 +42,13 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
 [aqui](https://docs.docker.com/desktop/install/windows-install/)
 
 ```bash
-# Una vez tengas todo instalado, puedes ejecutar este comando
+# Una vez tengas todo instalado, puedes ejecutar estos comandos
+docker build --no-cache
 docker-compose up
 
 ```
-Cuando el proyecto esté montado se abrirá automáticamente la pagina de Login.
 
+Cuando el proyecto esté montado se abrirá automáticamente la pagina de Login.
 
 ## 📦 Tecnologías
 
@@ -65,8 +64,8 @@ Hay dispoible en el repositorio un PDF con la documentación de la API
 
 [aqui](./API-Documentation.pdf)
 
-## 
+##
 
-Esperamos que les guste la aplicación. 
+Esperamos que les guste la aplicación.
 
 Andrea Rethy y Claudio Martín
