@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dice from "./Dice";
 import { useNavigate } from "react-router-dom";
 
 const URL = "/api/playerGames/";
-const playerId = Number(sessionStorage.getItem("playerId"));
-const token = sessionStorage.getItem("token");
 
 const RollDice = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState<string | null>(null);
+  const [playerId, setPlayerId] = useState<number | null>(null);
   const [state, setState] = useState({
       dice1: 1 as 1 | 2 | 3 | 4 | 5 | 6,
       dice2: 1 as 1 | 2 | 3 | 4 | 5 | 6,
@@ -16,6 +16,11 @@ const RollDice = () => {
       totalScore: 0,
       rollCount: 0
   });
+
+  useEffect(() => {
+    setToken(sessionStorage.getItem("token"));
+    setPlayerId(Number(sessionStorage.getItem("playerId")));
+  }, [token, playerId]);
 
   const { dice1, dice2, rolling, result, totalScore, rollCount } = state
 
@@ -71,9 +76,6 @@ const RollDice = () => {
           }
           return response.json();
         })
-          .then((data) => {
-            console.log(data)
-          })
           .catch((error) => console.error('Error:', error));
     }
 
@@ -93,19 +95,14 @@ const RollDice = () => {
         fetch(`${URL}${playerId}`, {
           method: 'DELETE',
           headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-          // credentials: 'include',
+          credentials: 'include',
         })
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
-            //  setToken(data.token)
-            //  if (data.id !== 0) {
-              
-            // } else {
-            //   alert("")
-            // }
           } 
         )
           .catch((error) => console.error('Error:', error));

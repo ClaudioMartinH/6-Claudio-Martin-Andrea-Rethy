@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const URL = "/api/playerGames/";
-const playerId = Number(sessionStorage.getItem("playerId"));
-const token = sessionStorage.getItem("token");
 
 type Game = {
   id: number,
@@ -15,9 +13,14 @@ type Game = {
 
 const ListGames = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState<string | null>(null);
+  const [playerId, setPlayerId] = useState<number | null>(null);
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
+    setToken(sessionStorage.getItem("token"));
+    setPlayerId(Number(sessionStorage.getItem("playerId")));
+
     const onWindowLoad = () => {
       getMyGames();
     };
@@ -31,7 +34,7 @@ const ListGames = () => {
     return () => {
       window.removeEventListener("load", onWindowLoad);
     };
-  }, []);
+  }, [token, playerId]);
 
 function getMyGames() {
   fetch(`${URL}${playerId}`, {
