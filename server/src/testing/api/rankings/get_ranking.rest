@@ -1,2 +1,5 @@
 GET  http://localhost:3000/api/ranking
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjcyNjQ5OTcsImV4cCI6MTcyNzI2ODU5N30.rEPdmun0Ei_ZpVYPxf59KfJSn99K3qnKa18IakQvj7k
+
+# hay que cambiar el token cada query
