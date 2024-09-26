@@ -52,7 +52,7 @@ export class GameRepositoryImpl {
                         totalLost: 1,
                     },
                 });
-                const percentage = (updatedRanking.totalLost / updatedRanking.totalGames) * 100;
+                const percentage = (updatedRanking.totalWins / updatedRanking.totalGames) * 100;
                 await prisma.ranking.upsert({
                     where: { playerId: data.playerId },
                     update: {

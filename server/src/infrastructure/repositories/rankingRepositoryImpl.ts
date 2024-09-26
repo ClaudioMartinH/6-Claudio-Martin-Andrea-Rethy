@@ -6,7 +6,7 @@ export class RankingRepositoryImpl {
     async getRanking(): Promise<Ranking[]> {
         return await prisma.ranking.findMany({
             orderBy: {
-                winPercentage: 'asc'
+                winPercentage: 'desc'
               },
         });
     };
